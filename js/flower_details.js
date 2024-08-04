@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   const flowerId = urlParams.get("id");
 
-  fetch(`https://django-final-exam-backend-part.onrender.com/flowers/flowers/${flowerId}/`)
+  fetch(`http://127.0.0.1:8000/flowers/flowers/${flowerId}/`)
     .then((response) => response.json())
     .then((data) => {
       displayFlowerDetails(data);
@@ -26,7 +26,7 @@ function order_flower(flower) {
     }
 
     if (product_quantity <= flower.stock) {
-      fetch("https://django-final-exam-backend-part.onrender.com/orders/create_order/", {
+      fetch("http://127.0.0.1:8000/orders/create_order/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +110,7 @@ const post_comment = (flowerId) => {
     location.reload();
     const username = document.getElementById("name").value;
     const usertext = document.getElementById("text").value;
-    fetch("https://django-final-exam-backend-part.onrender.com/flowers/comments_api/", {
+    fetch("http://127.0.0.1:8000/flowers/comments_api/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -138,7 +138,7 @@ const post_comment = (flowerId) => {
 };
 
 const get_comments = (flowerId) => {
-  fetch(`https://django-final-exam-backend-part.onrender.com/flowers/get_comment/${flowerId}/`)
+  fetch(`http://127.0.0.1:8000/flowers/get_comment/${flowerId}/`)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         if (confirm('Are you sure you want to delete this comment?')) {
 
-          const response = await fetch(`https://django-final-exam-backend-part.onrender.com/flowers/comments/${commentId}/`, {
+          const response = await fetch(`http://127.0.0.1:8000/flowers/comments/${commentId}/`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',

@@ -1,5 +1,4 @@
-document
-  .getElementById("changePasswordForm")
+document.getElementById("changePasswordForm")
   .addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -9,7 +8,7 @@ document
     console.log(authToken);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/profiles/pass_cng/", {
+      const response = await fetch("https://django-final-exam-backend-part.onrender.com/profiles/pass_cng/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

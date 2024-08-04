@@ -1,6 +1,6 @@
 // flowers api fetch
 const loadFlowers = () => {
-  fetch("http://127.0.0.1:8000/flowers/flowers/")
+  fetch("https://django-final-exam-backend-part.onrender.com/flowers/flowers/")
     .then((response) => response.json())
     .then((data) => displayFlowers(data))
     .catch((error) => console.log(error));

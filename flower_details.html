@@ -26,40 +26,42 @@
   <br />
   <main>
     <section>
-      <div id="flower-details">
+      <div id="flower-details" style="padding-top: 120px;">
         <!-- Flower details -->
       </div>
     </section>
     <section>
-      <h1 class="text-center text-white pt-5">
-        <span class="onnorokor_color">Comment</span>
+      <h1 class="text-center text-dark pt-5">
+        <span>Comment</span>
       </h1>
       <br />
-      <div class="comment-section container card bg-dark text-white">
+      <div class="comment-section container card bg-white index_flower_card" id="index_flower_card" style="border-radius: 10px;">
         <div id="commentForm" class="row g-3 mx-auto w-100 gap-3" style="padding-top: 30px">
           <div class="col-md-12">
-            <label for="name" class="form-label text-white"><b>Name</b></label>
+            <label for="name" class="form-label"><b>Name</b></label>
             <input type="text" class="form-control bg-secondary outline-none" id="name" name="name" required />
           </div>
           <div class="col-md-12">
-            <label for="text" class="form-label text-white"><b>Messages</b></label>
+            <label for="text" class="form-label"><b>Messages</b></label>
             <textarea class="form-control bg-secondary outline-none" id="text" name="text" required></textarea>
           </div>
           <div class="col-12">
-            <button type="submit" class="btn btn-outline-info" id="submit_buttons">Submit</button>
+            <button type="submit" class="btn btn-outline-info" id="submit_buttons">
+              Submit
+            </button>
           </div>
-          <br>
+          <br />
         </div>
       </div>
-      <br>
+      <br />
 
       <div id="comments-section" class="container mt-5">
-        <h3 class="text-white">Total Count >> <span id="comments-count">0</span></h3>
+        <h3 class="text-dark">
+          Total Count >> <span id="comments-count">0</span>
+        </h3>
         <div id="comments-list" class="list-group"></div>
       </div>
     </section>
-
-
   </main>
 
   <!-- Footer -->

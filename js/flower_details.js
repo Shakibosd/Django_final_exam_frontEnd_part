@@ -59,8 +59,9 @@ function order_flower(flower) {
 function displayFlowerDetails(flower) {
   const detailsContainer = document.getElementById("flower-details");
   detailsContainer.innerHTML = `
-        <div class="card container bg-dark text-white">
-            <img src="${flower.image}" alt="${flower.title}" class="mx-auto rounded" style="width:900px; height:500px; padding-top:20px;">
+        <div class="card container bg-white text-dark index_flower_card" style="border-radius: 10px;">
+            <br>
+            <img src="${flower.image}" class="card-img-top mx-auto d-block" alt="${flower.title}" style="width:800px; height:500px; border-radius: 10px;">
             <h1 class="pt-5">${flower.title}</h1>
             <p>Price : ${flower.price} ৳</p>
             <p>Category : <span class="btn btn-secondary">${flower.category}</span></p>
@@ -155,7 +156,7 @@ const displayComment = (comments) => {
   commentCount.innerHTML = `${comments.length}`;
 
   let commentsHtml = comments.map(comment => `
-    <div class="bg-dark text-white card p-4 mb-3 w-25">
+    <div class="bg-white text-dark card p-4 mb-3 w-25 index_flower_card" style="border-radius: 10px;">
       <h4>${comment.name}</h4> 
       <p>${comment.body}</p>
       <small>${new Date(comment.created_on).toLocaleString()}</small>

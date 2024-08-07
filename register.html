@@ -23,18 +23,17 @@
   <div id="navbar"></div>
   <script src="./js/navbar.js"></script>
 
-  <!-- Login -->
-  <h1 class="text-center text-white pt-3">
+  <!-- register -->
+  <h1 class="text-center text-white pt-5">
     <span class="ekrokom_color">This Is</span>
     <span class="onnorokor_color">SignUp Page</span>
   </h1>
   <div class="pt-4 d-flex container gap-4">
-    <div>
-      <img src="images/signup.png" alt="login-img" class="signup-img" />
+    <div style="padding-top: 20px;">
+      <img src="images/reg.png" alt="login-img" class="signup-img" />
     </div>
-    <div class="text-white">
-      <form class="row g-3 mx-auto w-100 gap-3" style="padding-top: 50px" onsubmit="handleRegister(event)"
-        id="register-form">
+    <div class="text-dark w-50">
+      <form class="row g-3 mx-auto gap-3" style="padding-top: 50px" onsubmit="handleRegister(event)" id="register-form">
         <div class="col-md-12">
           <label for="username" class="form-label"><b>Username</b></label>
           <input type="username" class="form-control bg-secondary outline-none" id="username" name="username"
@@ -71,16 +70,54 @@
         </div>
       </form>
       <br />
-      <p class="text-white">
+      <p class="text-dark">
         <b>You Have Alrody An Account Please : </b>
         <a href="./login.html" class="btn btn-info btn-sm">Login</a>
       </p>
     </div>
   </div>
 
-  <!-- Footer -->
-  <div id="footer" class="pt-5"></div>
-  <script src="./js/footer.js"></script>
+
+  <!-- footer area -->
+  <footer class="pt-5">
+    <h1 class="text-center text-dark">
+      <span class="ekrokom_color">This Is</span>
+      <span class="onnorokor_color">Footer </span>
+    </h1>
+    <br />
+    <div style="background-color: black;">
+      <div class="container" style="padding: 60px">
+        <div style="display: flex; justify-content: center; gap: 20rem">
+          <div class="text-white">
+            <div class="row" style="font-size: 40px; font-weight: bold">
+              <div class="col-md-4">
+                <a href="https://www.facebook.com/syednazmusshakib.shakib" target="_blank"><i
+                    class="bx bxl-facebook-circle"></i></a>
+                <a href="https://www.youtube.com/@syednazmusshakib1833/featured" target="_blank"><i
+                    class="bx bxl-youtube" style="color: #ff0000"></i></a>
+                <a href="https://github.com/Shakibosd?tab=repositories" target="_blank"><i class="bx bxl-github"
+                    style="color: #ffffff"></i></a>
+              </div>
+              <div class="col-md-4">
+                <a href="https://www.linkedin.com/in/syed-nazmus-shakib-686985264/" target="_blank"><i
+                    class="bx bxl-linkedin-square" style="color: #324ad3"></i></a>
+                <a href="https://x.com/syed_shaki27278" target="_blank"><i class="bx bxl-twitter"
+                    style="color: rgb(129, 117, 117)"></i></a>
+                <a href="https://www.instagram.com/shakibosd/" target="_blank"><i class="bx bxl-instagram-alt"
+                    style="color: #b91964"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="text-white" style="padding-top: 60px">
+            &copy; <span id="current-year"></span> Developed With By Nazmus Shakib
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Flower showing Card -->
+  <script src="./js/app.js"></script>
 
   <!-- Auth Js -->
   <script src="./js/auth.js"></script>

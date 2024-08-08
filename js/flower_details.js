@@ -164,7 +164,7 @@ const displayComment = (comments) => {
       <br>
       <div class="d-flex gap-5">
         <div>
-          <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
+        <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
         </div>
         <div>
           <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
@@ -178,7 +178,7 @@ const displayComment = (comments) => {
 
 //handle edit comment
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("comments-list").addEventListener("click", async (event) => {
+  document.getElementById("comments-list").addEventListener("click", (event) => {
     if (event.target.classList.contains("edit-comment")) {
       const commentId = event.target.getAttribute("data-id");
       const commentName = event.target.getAttribute("data-name");
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(`https://django-final-exam-backend-part.onrender.com/flowers/comments/${commentId}/`, {
-        method: "GET", 
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${localStorage.getItem("authToken")}`
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
-        document.getElementById("edit-comment-form").style.display = 'none';
+        document.getElementById("edit-comment-form").style.display = "none";
         const updatedComments = await get_comments();
         displayComment(updatedComments);
       } else {
@@ -222,7 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
 
 
 // Handle delete comment

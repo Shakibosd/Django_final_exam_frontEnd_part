@@ -156,46 +156,78 @@ const displayComment = (comments) => {
   commentCount.innerHTML = `${comments.length}`;
 
   let commentsHtml = comments.map(comment => `
-<div id="comments-list">
-  <div class="bg-white text-dark card p-4 mb-3 w-25 index_flower_card" style="border-radius: 10px;">
-    <h4>${comment.name}</h4>
-    <p>${comment.body}</p>
-    <small>${new Date(comment.created_on).toLocaleString()}</small>
-    <br>
-    <div class="d-flex gap-5">
-      <div>
-        <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
-      </div>
-      <div>
-        <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
+  <div id="comments-list">
+    <div class="bg-white text-dark card p-4 mb-3 w-25 index_flower_card" style="border-radius: 10px;">
+      <h4>${comment.name}</h4>
+      <p>${comment.body}</p>
+      <small>${new Date(comment.created_on).toLocaleString()}</small>
+      <br>
+      <div class="d-flex gap-5">
+        <div>
+          <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
+        </div>
+        <div>
+          <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
   `).join('');
   commentdiv.innerHTML = commentsHtml;
 };
 
-
-// Handle edit comment
+//handle edit comment
 document.addEventListener("DOMContentLoaded", () => {
-  // Handle edit button click
   document.getElementById("comments-list").addEventListener("click", async (event) => {
     if (event.target.classList.contains("edit-comment")) {
       const commentId = event.target.getAttribute("data-id");
       const commentName = event.target.getAttribute("data-name");
       const commentBody = event.target.getAttribute("data-body");
 
-      // Populate the edit form with the comment data
       document.getElementById("edit-comment-id").value = commentId;
       document.getElementById("edit-comment-name").value = commentName;
       document.getElementById("edit-comment-body").value = commentBody;
-
-      // Display the edit form
       document.getElementById("edit-comment-form").style.display = "block";
     }
+  });
 
-    // Handle delete button click
+  document.getElementById("edit-comment-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const commentId = document.getElementById("edit-comment-id").value;
+    const commentName = document.getElementById("edit-comment-name").value;
+    const commentBody = document.getElementById("edit-comment-body").value;
+
+    try {
+      const response = await fetch(`https://django-final-exam-backend-part.onrender.com/flowers/comments/${commentId}/`, {
+        method: "GET", 
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+        },
+        body: JSON.stringify({ name: commentName, body: commentBody })
+      });
+
+      if (response.ok) {
+        document.getElementById("edit-comment-form").style.display = 'none';
+        const updatedComments = await get_comments();
+        displayComment(updatedComments);
+      } else {
+        const errorData = await response.json();
+        console.error("Failed to update comment: ", errorData);
+        alert(`Failed to update comment: ${errorData.detail || "Unknown error"}`);
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+      alert("An error occurred while updating the comment");
+    }
+  });
+});
+
+
+
+// Handle delete comment
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("comments-list").addEventListener("click", async (event) => {
     if (event.target.classList.contains("delete-comment")) {
       const commentId = event.target.getAttribute("data-id");
       try {
@@ -211,7 +243,8 @@ document.addEventListener("DOMContentLoaded", () => {
           if (response.ok) {
             const commentElement = event.target.closest(".card");
             commentElement.remove();
-            const updatedComments = get_comments();
+            window.location.reload();
+            const updatedComments = await get_comments();
             displayComment(updatedComments);
           } else {
             alert("Failed to delete comment");
@@ -223,40 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-
-  // Handle form submission
-  document.getElementById("edit-comment-form").addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const commentId = document.getElementById("edit-comment-id").value;
-    const commentName = document.getElementById("edit-comment-name").value;
-    const commentBody = document.getElementById("edit-comment-body").value;
-
-    try {
-      const response = await fetch(`https://django-final-exam-backend-part.onrender.com/flowers/comments/${commentId}/`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `${localStorage.getItem("authToken")}`
-        },
-        body: JSON.stringify({ name: commentName, body: commentBody })
-      });
-
-      if (response.ok) {
-        document.getElementById("edit-comment-form").style.display = 'none';
-        const updatedComments = get_comments();
-        displayComment(updatedComments);
-      } else {
-        const errorData = await response.json();
-        console.error("Failed to update comment: ", errorData);
-        alert("Failed to update comment");
-      }
-    } catch (error) {
-      console.error("Error: ", error);
-      alert("An error occurred while updating the comment");
-    }
-  });
 });
-
-
 
 

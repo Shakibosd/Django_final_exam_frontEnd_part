@@ -24,56 +24,48 @@
   <script src="./js/navbar.js"></script>
 
   <!-- register -->
-  <h1 class="text-center text-white pt-5">
-    <span class="ekrokom_color">This Is</span>
-    <span class="onnorokor_color">SignUp Page</span>
-  </h1>
-  <div class="pt-4 d-flex container gap-4">
-    <div style="padding-top: 20px;">
+  <div class="d-flex container gap-4" style="padding-top: 150px;">
+    <div style="padding-top: 65px;">
       <img src="images/reg.png" alt="login-img" class="signup-img" />
     </div>
-    <div class="text-dark w-50">
-      <form class="row g-3 mx-auto gap-3" style="padding-top: 50px" onsubmit="handleRegister(event)" id="register-form">
+    <div class="text-dark w-50 card" style="border-radius: 20px;">
+      <form class="row g-3 mx-auto gap-3" style="padding-top: 50px; width: 550px;" onsubmit="handleRegister(event)" id="register-form">
         <div class="col-md-12">
           <label for="username" class="form-label"><b>Username</b></label>
-          <input type="username" class="form-control bg-secondary outline-none" id="username" name="username"
-            required />
+          <input type="username" class="form-control" id="username" name="username" required />
         </div>
         <div class="col-md-12">
           <label for="email" class="form-label"><b>Email</b></label>
-          <input type="email" class="form-control bg-secondary outline-none" id="email" name="email" required />
+          <input type="email" class="form-control" id="email" name="email" required />
         </div>
         <div class="col-md-12">
           <label for="first_name" class="form-label"><b>First Name</b></label>
-          <input type="first_name" class="form-control bg-secondary outline-none" id="first_name" name="first_name"
-            required />
+          <input type="first_name" class="form-control" id="first_name" name="first_name" required />
         </div>
         <div class="col-md-12">
           <label for="last_name" class="form-label"><b>Last Name</b></label>
-          <input type="last_name" class="form-control bg-secondary outline-none" id="last_name" name="last_name"
-            required />
+          <input type="last_name" class="form-control" id="last_name" name="last_name" required />
         </div>
         <div class="col-md-12">
           <label for="password" class="form-label"><b>Password</b></label>
-          <input type="password" class="form-control bg-secondary outline-none" id="password" name="password"
-            required />
+          <input type="password" class="form-control" id="password" name="password" required />
         </div>
         <div class="col-md-12">
           <label for="confirm_password" class="form-label"><b>Confirm Password</b></label>
-          <input type="confirm_password" class="form-control bg-secondary outline-none" id="confirm_password"
-            name="confirm_password" required />
+          <input type="confirm_password" class="form-control" id="confirm_password" name="confirm_password" required />
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-outline-info">
             <b>SignUp</b>
           </button>
         </div>
+        <p class="text-dark">
+          <b>You Have Alrody An Account Please : </b>
+          <a href="./login.html" class="btn btn-info btn-sm">Login</a>
+        </p>
       </form>
       <br />
-      <p class="text-dark">
-        <b>You Have Alrody An Account Please : </b>
-        <a href="./login.html" class="btn btn-info btn-sm">Login</a>
-      </p>
+      <br>
     </div>
   </div>
 

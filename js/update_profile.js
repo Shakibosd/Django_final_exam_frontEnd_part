@@ -48,20 +48,39 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // order history
-document.addEventListener("DOMContentLoaded", (event) => {
-  fetch("https://django-final-exam-backend-part.onrender.com/orders/orders/")
-    .then((response) => response.json())
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("authToken");
+
+  if (!token) {
+    console.error("No auth token found.");
+    return;
+  }
+
+  fetch("https://django-final-exam-backend-part.onrender.com/orders/my_orders/", {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `token ${token}`,
+    }
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
     .then((data) => {
+      console.log("Fetched data:", data);
       const orderHistoryTable = document.getElementById("order-history");
+      orderHistoryTable.innerHTML = '';
       data.forEach((order) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-                    <th>${order.user}</th>
-                    <td>${order.flower}</td>
-                    <td>${order.quantity}</td>
-                    <td>${order.status}</td>
-                    <td>${order.order_date}</td>
-                `;
+          <th>${order.user}</th>  
+          <td>${order.flower}</td>
+          <td>${order.quantity}</td>
+          <td>${order.status}</td>
+          <td>${order.order_date}</td>
+        `;
         orderHistoryTable.appendChild(row);
       });
     })

@@ -38,4 +38,3 @@ onload = () => {
     clearTimeout(c);
   }, 1000);
 };
-

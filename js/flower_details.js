@@ -107,10 +107,12 @@ function displayFlowerDetails(flower) {
 //comment part
 const post_comment = (flowerId) => {
   const comment_button = document.getElementById("submit_buttons");
-  comment_button.addEventListener("click", () => {
-    location.reload();
+  comment_button.addEventListener("click", (event) => {
+    event.preventDefault();
+    
     const username = document.getElementById("name").value;
     const usertext = document.getElementById("text").value;
+
     fetch("https://django-final-exam-backend-part.onrender.com/flowers/comments_api/", {
       method: "POST",
       headers: {
@@ -124,51 +126,53 @@ const post_comment = (flowerId) => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("network response waz not ok");
+          throw new Error("Network response was not ok");
         }
         return res.json();
       })
       .then((resData) => {
-        console.log(resData);
+        console.log("Comment posted successfully: ", resData);
+        get_comments(flowerId); // Refresh the comments after posting
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Error posting comment: ", error);
       });
-    console.log(flowerId, username, usertext);
+    console.log("Posting comment with data: ", flowerId, username, usertext);
   });
 };
 
+
 const get_comments = (flowerId) => {
-  fetch(`https://django-final-exam-backend-part.onrender.com/flowers/get_comment/${flowerId}/`)
+  fetch(`https://django-final-exam-backend-part.onrender.com/get_comment/${flowerId}/`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      console.log("Fetched comments data: ", data);
       displayComment(data);
+    })
+    .catch((error) => {
+      console.error("Error fetching comments: ", error);
     });
 };
 
 //comment display
 const displayComment = (comments) => {
-  console.log(comments);
   const commentCount = document.getElementById("comments-count");
   const commentdiv = document.getElementById("comments-list");
 
   commentCount.innerHTML = `${comments.length}`;
 
   let commentsHtml = comments.map(comment => `
-  <div id="comments-list">
-    <div class="bg-white text-dark card p-4 mb-3 w-25 index_flower_card" style="border-radius: 10px;">
-      <h4>${comment.name}</h4>
-      <p>${comment.body}</p>
-      <small>${new Date(comment.created_on).toLocaleString()}</small>
-      <br>
-      <div class="d-flex gap-5">
-        <div>
+  <div class="bg-white text-dark card p-4 mb-3 w-25 index_flower_card" style="border-radius: 10px;">
+    <h4>${comment.name}</h4>
+    <p>${comment.body}</p>
+    <small>${new Date(comment.created_on).toLocaleString()}</small>
+    <br>
+    <div class="d-flex gap-5">
+      <div>
         <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
-        </div>
-        <div>
-          <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
-        </div>
+      </div>
+      <div>
+        <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
       </div>
     </div>
   </div>
@@ -223,7 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 // Handle delete comment
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("comments-list").addEventListener("click", async (event) => {
@@ -256,5 +259,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
 

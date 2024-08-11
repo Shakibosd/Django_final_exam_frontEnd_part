@@ -102,17 +102,16 @@ function displayFlowerDetails(flower) {
   order_flower(flower);
   post_comment(flower.id);
   get_comments(flower.id);
+  checkPurchaseStatus(flower.id);
 }
 
-//comment part
+//comment part  
 const post_comment = (flowerId) => {
   const comment_button = document.getElementById("submit_buttons");
-  comment_button.addEventListener("click", (event) => {
-    event.preventDefault();
-    
+  comment_button.addEventListener("click", () => {
+    location.reload();
     const username = document.getElementById("name").value;
     const usertext = document.getElementById("text").value;
-
     fetch("https://django-final-exam-backend-part.onrender.com/flowers/comments_api/", {
       method: "POST",
       headers: {
@@ -126,59 +125,80 @@ const post_comment = (flowerId) => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error("network response waz not ok");
         }
         return res.json();
       })
       .then((resData) => {
-        console.log("Comment posted successfully: ", resData);
-        get_comments(flowerId); // Refresh the comments after posting
+        console.log(resData);
       })
       .catch((error) => {
-        console.error("Error posting comment: ", error);
+        console.error(error);
       });
-    console.log("Posting comment with data: ", flowerId, username, usertext);
+    console.log(flowerId, username, usertext);
   });
 };
 
-
 const get_comments = (flowerId) => {
-  fetch(`https://django-final-exam-backend-part.onrender.com/get_comment/${flowerId}/`)
+  fetch(`https://django-final-exam-backend-part.onrender.com/flowers/get_comment/${flowerId}/`)
     .then((res) => res.json())
     .then((data) => {
-      console.log("Fetched comments data: ", data);
+      console.log(data);
       displayComment(data);
-    })
-    .catch((error) => {
-      console.error("Error fetching comments: ", error);
     });
 };
 
 //comment display
 const displayComment = (comments) => {
+  console.log(comments);
   const commentCount = document.getElementById("comments-count");
   const commentdiv = document.getElementById("comments-list");
 
   commentCount.innerHTML = `${comments.length}`;
 
   let commentsHtml = comments.map(comment => `
-  <div class="bg-white text-dark card p-4 mb-3 w-25 index_flower_card" style="border-radius: 10px;">
-    <h4>${comment.name}</h4>
-    <p>${comment.body}</p>
-    <small>${new Date(comment.created_on).toLocaleString()}</small>
-    <br>
-    <div class="d-flex gap-5">
-      <div>
+  <div id="comments-list">
+    <div class="bg-white text-dark card p-4 mb-3 w-25 index_flower_card" style="border-radius: 10px;">
+      <h4>${comment.name}</h4>
+      <p>${comment.body}</p>
+      <small>${new Date(comment.created_on).toLocaleString()}</small>
+      <br>
+      <div class="d-flex gap-5">
+        <div>
         <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
-      </div>
-      <div>
-        <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
+        </div>
+        <div>
+          <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
+        </div>
       </div>
     </div>
   </div>
   `).join('');
   commentdiv.innerHTML = commentsHtml;
 };
+
+const checkPurchaseStatus = (flowerId) => {
+  const token = localStorage.getItem("authToken");
+  fetch(`https://django-final-exam-backend-part.onrender.com/flowers/check_purchase/${flowerId}/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `token ${token}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.has_purchased) {
+        document.getElementById("commentForm").style.display = "block";
+      } else {
+        document.getElementById("commentForm").style.display = "none";
+      }
+    })
+    .catch((error) => {
+      console.error("Error checking purchase status:", error);
+    });
+};
+
 
 //handle edit comment
 document.addEventListener("DOMContentLoaded", () => {

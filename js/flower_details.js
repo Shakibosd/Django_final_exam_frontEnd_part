@@ -102,20 +102,22 @@ function displayFlowerDetails(flower) {
   order_flower(flower);
   post_comment(flower.id);
   get_comments(flower.id);
-  checkPurchaseStatus(flower.id);
 }
 
 //comment part  
 const post_comment = (flowerId) => {
+  const token = localStorage.getItem("authToken");
   const comment_button = document.getElementById("submit_buttons");
+  
   comment_button.addEventListener("click", () => {
-    location.reload();
     const username = document.getElementById("name").value;
     const usertext = document.getElementById("text").value;
+
     fetch("https://django-final-exam-backend-part.onrender.com/flowers/comments_api/", {
-      method: "POST",
+      method: "POST", 
       headers: {
         "Content-Type": "application/json",
+        Authorization: `token ${token}` 
       },
       body: JSON.stringify({
         flowerId: flowerId,
@@ -123,21 +125,24 @@ const post_comment = (flowerId) => {
         comment: usertext,
       }),
     })
-      .then((res) => {
+      .then(async (res) => {
         if (!res.ok) {
-          throw new Error("network response waz not ok");
+          const err = await res.json();
+          throw new Error(err.message);
         }
         return res.json();
       })
       .then((resData) => {
         console.log(resData);
+        location.reload(); 
       })
       .catch((error) => {
+        alert(error.message); 
         console.error(error);
       });
-    console.log(flowerId, username, usertext);
   });
 };
+
 
 const get_comments = (flowerId) => {
   fetch(`https://django-final-exam-backend-part.onrender.com/flowers/get_comment/${flowerId}/`)
@@ -176,29 +181,6 @@ const displayComment = (comments) => {
   `).join('');
   commentdiv.innerHTML = commentsHtml;
 };
-
-const checkPurchaseStatus = (flowerId) => {
-  const token = localStorage.getItem("authToken");
-  fetch(`https://django-final-exam-backend-part.onrender.com/flowers/check_purchase/${flowerId}/`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `token ${token}`,
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.has_purchased) {
-        document.getElementById("commentForm").style.display = "block";
-      } else {
-        document.getElementById("commentForm").style.display = "none";
-      }
-    })
-    .catch((error) => {
-      console.error("Error checking purchase status:", error);
-    });
-};
-
 
 //handle edit comment
 document.addEventListener("DOMContentLoaded", () => {

@@ -81,7 +81,7 @@ function displayFlowerDetails(flower) {
                       </button>
                    </div>
                   <div>
-                       ${CheckOrder(flower.id) ? `<a class="btn btn-warning text-white" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                       ${post_comment(flowerId, names, comment) ? `<a class="btn btn-warning text-white" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         Comment
                         </a>`: ''}
                   </div>
@@ -152,43 +152,29 @@ function displayFlowerDetails(flower) {
 }
 
 //comment part  
-const post_comment = (flowerId) => {
+const post_comment = async (flowerId, names, comment) => {
   const token = localStorage.getItem("authToken");
-  const comment_button = document.getElementById("submit_buttons");
-
-  comment_button.addEventListener("click", () => {
-    const username = document.getElementById("name").value.trim();
-    const usertext = document.getElementById("text").value.trim();
-
-    fetch("https://django-final-exam-backend-part.onrender.com/flowers/comments_api/", {
+  try {
+    const response = await fetch("https://django-final-exam-backend-part.onrender.com/flowers/comments_api/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `token ${token}`
+        Authorization: `token ${token}`,
       },
       body: JSON.stringify({
         flowerId: flowerId,
-        names: username,
-        comment: usertext,
-      }),
-    })
-      .then(async (res) => {
-        if (!res.ok) {
-          const err = await res.json();
-          console.error("Server response:", err);
-          throw new Error(err.message);
-        }
-        return res.json();
+        names: names,
+        comment: comment,
       })
-      .then((resData) => {
-        console.log("Success:", resData);
-        location.reload();
-      })
-      .catch((error) => {
-        console.error("Error posting comment:", error);
-        alert("An error occurred while posting the comment. Please try again.");
-      });
-  });
+    });
+    if (!response.ok) {
+      throw new Error("Failed to create comment");
+    }
+    const data = await response.json();
+    console.log('Comment created:', data);
+  } catch (error) {
+    console.error('Error creating comment:', error);
+  }
 };
 
 
@@ -231,29 +217,29 @@ const displayComment = (comments) => {
 };
 
 //check order comment
-const CheckOrder = async (flowerId) => {
-  const token = localStorage.getItem("authToken");
-  try {
-    const response = await fetch("https://django-final-exam-backend-part.onrender.com/flowers/check_order/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `token ${token}`,
-      },
-      body: JSON.stringify({
-        flowerId: flowerId,
-      })
-    });
-    if (!response.ok) {
-      throw new Error("Failed to check order status");
-    }
-    const data = await response.json();
-    return data.order_exists;
-  } catch (error) {
-    console.error('Error checking order:', error);
-    return false;
-  }
-};
+// const CheckOrder = async (flowerId) => {
+//   const token = localStorage.getItem("authToken");
+//   try {
+//     const response = await fetch("https://django-final-exam-backend-part.onrender.com/flowers/check_order/", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `token ${token}`,
+//       },
+//       body: JSON.stringify({
+//         flowerId: flowerId,
+//       })
+//     });
+//     if (!response.ok) {
+//       throw new Error("Failed to check order status");
+//     }
+//     const data = await response.json();
+//     return data.order_exists;
+//   } catch (error) {
+//     console.error('Error checking order:', error);
+//     return false;
+//   }
+// };
 
 // Handle delete comment
 document.addEventListener("DOMContentLoaded", () => {

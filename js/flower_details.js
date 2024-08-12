@@ -157,8 +157,8 @@ const post_comment = (flowerId) => {
   const comment_button = document.getElementById("submit_buttons");
 
   comment_button.addEventListener("click", () => {
-    const username = document.getElementById("name").value;
-    const usertext = document.getElementById("text").value;
+    const username = document.getElementById("name").value.trim();
+    const usertext = document.getElementById("text").value.trim();
 
     fetch("https://django-final-exam-backend-part.onrender.com/flowers/comments_api/", {
       method: "POST",
@@ -175,7 +175,7 @@ const post_comment = (flowerId) => {
       .then(async (res) => {
         if (!res.ok) {
           const err = await res.json();
-          console.error("Server response:", err); // Log full response
+          console.error("Server response:", err);
           throw new Error(err.message);
         }
         return res.json();
@@ -186,10 +186,10 @@ const post_comment = (flowerId) => {
       })
       .catch((error) => {
         console.error("Error posting comment:", error);
+        alert("An error occurred while posting the comment. Please try again.");
       });
   });
 };
-
 
 
 const get_comments = (flowerId) => {

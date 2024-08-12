@@ -10,7 +10,6 @@ fetch("navbar.html")
     console.log(token);
 
     if (token) {
-      // Handle token parsing and checking
       try {
         navElement.innerHTML += ` 
           <a href="./profile.html" class="btn btn-outline-success">Home</a>
@@ -18,10 +17,9 @@ fetch("navbar.html")
           <a href="./pass_change.html" class="btn btn-outline-warning">Password Change</a>
           <a class="btn btn-danger" onclick="handleLogout()">Logout</a>
         `;
+
         const payload = JSON.parse(atob(token.split('.')[1]));
         const isStaff = payload.is_staff;
-
-
         if (isStaff) {
           navElement.innerHTML += `
             <a href="http://127.0.0.1:8000/admin/" class="btn btn-outline-secondary">Admin Dashboard</a>

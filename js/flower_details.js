@@ -74,9 +74,18 @@ function displayFlowerDetails(flower) {
                 </div>
                <div>
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal">
-                    Order Now
-                  </button>
+                  <div class="d-flex gap-3">
+                       <div>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal"    data-bs-target="#orderModal">
+                       Order Now
+                      </button>
+                   </div>
+                  <div>
+                       ${CheckOrder(flower.id) ? `<a class="btn btn-warning text-white" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Comment
+                        </a>`: ''}
+                  </div>
+                  </div>
                   <!-- Modal -->
                   <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -87,13 +96,51 @@ function displayFlowerDetails(flower) {
                         <div class="modal-body">
                           <div class="mb-3">
                               <label for="quantity" class="form-label text-dark"><b>Quantity</b></label>
-                              <input id="quantity" type="number" class="form-control bg-secondary">
+                              <input id="quantity" type="number" class="form-control">
                           </div>
-                          <button type="button" class="btn btn-primary pl-5" id="order_submit">Submit</button>
+                          <button type="button" class="btn btn-outline-primary pl-5" id="order_submit">Submit</button>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <!--comment area-->
+                  <div class="collapse" id="collapseExample">
+                  <div class="card-body">
+                  <section>
+                    <br/>
+                    <div class="comment-section container card bg-white index_flower_card" id="index_flower_card"
+                      style="border-radius: 10px;">
+                      <div id="commentForm" class="row g-3 mx-auto w-100 gap-3" style="padding-top: 30px">
+                        <div class="col-md-12">
+                          <label for="name" class="form-label"><b>Name : </b></label>
+                          <input type="text" class="form-control" id="name" name="name" required />
+                        </div>
+                        <div class="col-md-12">
+                          <label for="text" class="form-label"><b>Messages : </b></label>
+                          <textarea class="form-control" id="text" name="text" required></textarea>
+                        </div>
+                        <div class="col-12">
+                          <button type="submit" class="btn btn-outline-info" id="submit_buttons">
+                            Submit
+                          </button>
+                        </div>
+                        <br/>
+                      </div>
+                    </div>
+                    <script>
+                      const pageReload = () => {
+                        window.location.reload();
+                      }
+                    </script>
+                    <div id="comments-section" class="container mt-5">
+                      <h3 class="text-dark">
+                        Total Count >> <span id="comments-count">0</span>
+                      </h3>
+                      <div id="comments-list" class="list-group"></div>
+                    </div>
+                  </section>
+                  </div>
+                </div>
               </div>
             </div>
             <br>
@@ -108,16 +155,16 @@ function displayFlowerDetails(flower) {
 const post_comment = (flowerId) => {
   const token = localStorage.getItem("authToken");
   const comment_button = document.getElementById("submit_buttons");
-  
+
   comment_button.addEventListener("click", () => {
     const username = document.getElementById("name").value;
     const usertext = document.getElementById("text").value;
 
     fetch("https://django-final-exam-backend-part.onrender.com/flowers/comments_api/", {
-      method: "POST", 
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `token ${token}` 
+        Authorization: `token ${token}`
       },
       body: JSON.stringify({
         flowerId: flowerId,
@@ -128,20 +175,21 @@ const post_comment = (flowerId) => {
       .then(async (res) => {
         if (!res.ok) {
           const err = await res.json();
+          console.error("Server response:", err); // Log full response
           throw new Error(err.message);
         }
         return res.json();
       })
       .then((resData) => {
-        console.log(resData);
-        location.reload(); 
+        console.log("Success:", resData);
+        location.reload();
       })
       .catch((error) => {
-        alert(error.message); 
-        console.error(error);
+        console.error("Error posting comment:", error);
       });
   });
 };
+
 
 
 const get_comments = (flowerId) => {
@@ -182,52 +230,30 @@ const displayComment = (comments) => {
   commentdiv.innerHTML = commentsHtml;
 };
 
-//handle edit comment
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("comments-list").addEventListener("click", (event) => {
-    if (event.target.classList.contains("edit-comment")) {
-      const commentId = event.target.getAttribute("data-id");
-      const commentName = event.target.getAttribute("data-name");
-      const commentBody = event.target.getAttribute("data-body");
-
-      document.getElementById("edit-comment-id").value = commentId;
-      document.getElementById("edit-comment-name").value = commentName;
-      document.getElementById("edit-comment-body").value = commentBody;
-      document.getElementById("edit-comment-form").style.display = "block";
+//check order comment
+const CheckOrder = async (flowerId) => {
+  const token = localStorage.getItem("authToken");
+  try {
+    const response = await fetch("https://django-final-exam-backend-part.onrender.com/flowers/check_order/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token ${token}`,
+      },
+      body: JSON.stringify({
+        flowerId: flowerId,
+      })
+    });
+    if (!response.ok) {
+      throw new Error("Failed to check order status");
     }
-  });
-
-  document.getElementById("edit-comment-form").addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const commentId = document.getElementById("edit-comment-id").value;
-    const commentName = document.getElementById("edit-comment-name").value;
-    const commentBody = document.getElementById("edit-comment-body").value;
-
-    try {
-      const response = await fetch(`https://django-final-exam-backend-part.onrender.com/flowers/comments/${commentId}/`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("authToken")}`
-        },
-        body: JSON.stringify({ name: commentName, body: commentBody })
-      });
-
-      if (response.ok) {
-        document.getElementById("edit-comment-form").style.display = "none";
-        const updatedComments = await get_comments();
-        displayComment(updatedComments);
-      } else {
-        const errorData = await response.json();
-        console.error("Failed to update comment: ", errorData);
-        alert(`Failed to update comment: ${errorData.detail || "Unknown error"}`);
-      }
-    } catch (error) {
-      console.error("Error: ", error);
-      alert("An error occurred while updating the comment");
-    }
-  });
-});
+    const data = await response.json();
+    return data.order_exists;
+  } catch (error) {
+    console.error('Error checking order:', error);
+    return false;
+  }
+};
 
 // Handle delete comment
 document.addEventListener("DOMContentLoaded", () => {

@@ -87,9 +87,9 @@ function displayFlowerDetails(flower) {
                         <div class="modal-body">
                           <div class="mb-3">
                               <label for="quantity" class="form-label text-dark"><b>Quantity</b></label>
-                              <input id="quantity" type="number" class="form-control bg-secondary">
+                              <input id="quantity" type="number" class="form-control">
                           </div>
-                          <button type="button" class="btn btn-primary pl-5" id="order_submit">Submit</button>
+                          <button type="button" class="btn btn-outline-primary pl-5" id="order_submit">Submit</button>
                         </div>
                       </div>
                     </div>
@@ -108,7 +108,7 @@ function displayFlowerDetails(flower) {
 const post_comment = (flowerId) => {
   const comment_button = document.getElementById("submit_buttons");
   comment_button.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent the form from submitting in the traditional way
+    event.preventDefault(); 
 
     const username = document.getElementById("name").value;
     const usertext = document.getElementById("text").value;
@@ -132,14 +132,13 @@ const post_comment = (flowerId) => {
       })
       .then((resData) => {
         console.log(resData);
-        // Optionally reload the page after successful API call
         location.reload();
       })
       .catch((error) => {
         console.error(error);
       });
 
-    console.log(flowerId, username, usertext); // This should now log the values correctly
+    console.log(flowerId, username, usertext); 
   });
 };
 
@@ -167,14 +166,9 @@ const displayComment = (comments) => {
       <p>${comment.body}</p>
       <small>${new Date(comment.created_on).toLocaleString()}</small>
       <br>
-      <div class="d-flex gap-5">
-        <div>
-          <a class="btn btn-success edit-comment" data-id="${comment.id}">Edit</a>
-        </div>
-        <div>
-          <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
-        </div>    
-      </div>
+      <div>
+          <a class="btn btn-danger delete-comment w-50" data-id="${comment.id}">Delete</a>
+      </div>    
     </div>
   `).join('');
   commentdiv.innerHTML = commentsHtml;

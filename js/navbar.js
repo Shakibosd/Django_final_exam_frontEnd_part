@@ -14,7 +14,7 @@ fetch("navbar.html")
           <a href="./profile.html" class="btn btn-outline-success">Home</a>
           <a class="btn btn-outline-primary" href="./update_profile.html">Profile</a>
           <a href="./pass_change.html" class="btn btn-outline-warning">Password Change</a>
-           <a href="http://127.0.0.1:8000/admin/" class="btn btn-outline-secondary">Admin Dashboard</a>
+           <a href="./admin_deshboard.html" class="btn btn-outline-secondary">Admin Dashboard</a>
           <a class="btn btn-danger" onclick="handleLogout()">Logout</a>
         `;
 

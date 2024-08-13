@@ -30,39 +30,37 @@
         <!-- Flower details -->
       </div>
     </section>
-    <!-- <section>
-      <h1 class="text-center text-dark pt-5">
-        <span>Comment</span>
-      </h1>
-      <br />
-      <div class="comment-section container card bg-white index_flower_card" id="index_flower_card"
-        style="border-radius: 10px;">
-        <div id="commentForm" class="row g-3 mx-auto w-100 gap-3" style="padding-top: 30px">
-          <div class="col-md-12">
-            <label for="name" class="form-label"><b>Name</b></label>
-            <input type="text" class="form-control" id="name" name="name" required />
+    <section>
+      <br>
+      <div id="edit-comment-form" class="pt-5 container card index_flower_card"
+        style="display: none; border-radius: 10px;">
+        <h3 class="text-center">Edit Comment</h3>
+        <form id="comment-edit-form">
+          <input type="hidden" id="edit-comment-id">
+          <div>
+            <label for="edit-comment-name"><b>Name : </b></label>
+            <input type="text" class="form-control" id="edit-comment-name" name="edit-comment-name" required />
           </div>
-          <div class="col-md-12">
-            <label for="text" class="form-label"><b>Messages</b></label>
-            <textarea class="form-control" id="text" name="text" required></textarea>
+          <div>
+            <br>
+            <label for="edit-comment-body"><b>Messages : </b></label>
+            <textarea class="form-control" id="edit-comment-body" name="edit-comment-body" required></textarea>
           </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-outline-info" id="submit_buttons">
-              Submit
-            </button>
-          </div>
-          <br />
+          <br>
+          <button class="btn btn-outline-info" type="submit">Update Comment</button>
+        </form>
+        <br>
+      </div>
+
+      <div class="d-flex">
+        <div id="comments-section" class="mt-5" style="width:75rem; padding-left: 12rem;">
+          <h3 class="text-dark">
+            Total Count >> <span id="comments-count">0</span>
+          </h3>
+          <div id="comments-list" class="list-group"></div>
         </div>
       </div>
-      <br />
-
-      <div id="comments-section" class="container mt-5">
-        <h3 class="text-dark">
-          Total Count >> <span id="comments-count">0</span>
-        </h3>
-        <div id="comments-list" class="list-group"></div>
-      </div>
-    </section> -->
+    </section>
   </main>
 
   <!-- Footer -->

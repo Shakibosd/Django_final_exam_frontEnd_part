@@ -73,26 +73,51 @@ function displayFlowerDetails(flower) {
                     <a href="./profile.html" class="btn btn-success text-white">Back To Profile</a>
                 </div>
                <div>
-                  <!-- Button -->
+                  <!-- Button trigger modal -->
                   <div class="d-flex gap-3">
-                      <div>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal">
-                          Order Now
-                          </button>
-                      </div>
-                      <div>
-                          <p>
-                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                     <div>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal">
+                         Order Now
+                        </button>
+                     </div>
+                         <div>
+                            <p>
+                            <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                               Comment
-                            </a>
-                          </p>
-                      </div>
+                            </button>
+                             </p>
+                          <div class="collapse" id="collapseExample">
+                            <div class="card-body">
+                                <section>
+                                <div class="comment-section container card bg-white index_flower_card" id="index_flower_card"
+                                  style="border-radius: 10px;">
+                                  <div id="commentForm" class="row g-3 mx-auto w-100 gap-3" style="padding-top: 30px">
+                                    <div class="col-md-12">
+                                      <label for="name" class="form-label"><b>Name</b></label>
+                                      <input type="text" class="form-control" id="name" name="name" required />
+                                    </div>
+                                    <div class="col-md-12">
+                                      <label for="text" class="form-label"><b>Messages</b></label>
+                                      <textarea class="form-control" id="text" name="text" required></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                      <button type="submit" class="btn btn-outline-info" id="submit_buttons">
+                                        Submit
+                                      </button>
+                                    </div>
+                                    <br />
+                                  </div>
+                                </div>
+                                
+                              </section>
+                            </div>
+                          </div>
+                     </div>
                   </div>
-
-                  <!-- Modal order now -->
+                  <!-- Modal -->
                   <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content" style="width:600px; height:220px;">
+                  <div class="modal-dialog">
+                    <div class="modal-content" style="width:600px; height:220px;">
                         <div class="">
                           <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close" style="padding-left:1150px;"></button>
                         </div>
@@ -101,43 +126,10 @@ function displayFlowerDetails(flower) {
                               <label for="quantity" class="form-label text-dark"><b>Quantity</b></label>
                               <input id="quantity" type="number" class="form-control">
                           </div>
-                          <button type="button" class="btn btn-outline-primary pl-5" id="order_submit">Submit</button>
-                        </div>
+                          <button type="button" class="btn btn-primary pl-5" id="order_submit">Submit</button>
                       </div>
                     </div>
                   </div>
-
-                  <!-- comment area -->
-                  <div class="collapse pt-5" id="collapseExample">
-                    <section class="w-100">
-                          <div class="comment-section card bg-white index_flower_card" id="index_flower_card"
-                            style="border-radius: 10px;">
-                            <div id="commentForm" class="row g-3 mx-auto w-100 gap-3" style="padding-top: 30px">
-                              <div class="col-md-12">
-                                <label for="name" class="form-label"><b>Name</b></label>
-                                <input type="text" class="form-control" id="name" name="name" required />
-                              </div>
-                              <div class="col-md-12">
-                                <label for="text" class="form-label"><b>Messages</b></label>
-                                <textarea class="form-control" id="text" name="text" required></textarea>
-                              </div>
-                              <div class="col-12">
-                                <button type="submit" class="btn btn-outline-info" id="submit_buttons">
-                                  Submit
-                                </button>
-                              </div>
-                              <br />
-                            </div>
-                          </div>
-                          <br />
-
-                          <div id="comments-section" class="container mt-2" style="width: 60rem;">
-                            <h3 class="text-dark">
-                              Total Count >> <span id="comments-count">0</span>
-                            </h3>
-                            <div id="comments-list" class="list-group"></div>
-                          </div>
-                  </section>
                 </div>
               </div>
             </div>
@@ -211,16 +203,71 @@ const displayComment = (comments) => {
       <p>${comment.body}</p>
       <small>${new Date(comment.created_on).toLocaleString()}</small>
       <br>
-      <div>
+     <div class="d-flex gap-5">
+        <div>
+            <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
+        </div>
+        <div>
           <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
-      </div>    
+        </div>    
+      </div>   
     </div>
   `).join('');
   commentdiv.innerHTML = commentsHtml;
 };
 
+//comment edit
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("authToken");
+  document.getElementById("comments-list").addEventListener("click", (event) => {
+    if (event.target.classList.contains("edit-comment")) {
+      const commentId = event.target.getAttribute("data-id");
+      const commentName = event.target.getAttribute("data-name");
+      const commentBody = event.target.getAttribute("data-body");
+
+      document.getElementById("edit-comment-id").value = commentId;
+      document.getElementById("edit-comment-name").value = commentName;
+      document.getElementById("edit-comment-body").value = commentBody;
+      document.getElementById("edit-comment-form").style.display = "block";
+    }
+  });
+
+  document.getElementById("edit-comment-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const commentId = document.getElementById("edit-comment-id").value;
+    const commentName = document.getElementById("edit-comment-name").value;
+    const commentBody = document.getElementById("edit-comment-body").value;
+
+    try {
+      const response = await fetch(`https://django-final-exam-backend-part.onrender.com/flowers/comments/${commentId}/`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `token ${token}`,
+        },
+        body: JSON.stringify({ name: commentName, body: commentBody })
+      });
+
+      if (response.ok) {
+        document.getElementById("edit-comment-form").style.display = "none";
+        const updatedComments = await get_comments();
+        displayComment(updatedComments);
+      } else {
+        const errorData = await response.json();
+        console.error("Failed to update comment: ", errorData);
+        alert(`Failed to update comment: ${errorData.detail || "Unknown error"}`);
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+      alert("An error occurred while updating the comment");
+    }
+  });
+});
+
+
 //delete comment
 document.addEventListener('DOMContentLoaded', () => {
+  const token = localStorage.getItem("authToken");
   document.getElementById('comments-list').addEventListener('click', async (event) => {
     if (event.target.classList.contains('delete-comment')) {
       const commentId = event.target.getAttribute('data-id');
@@ -231,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('token')}`
+              Authorization: `token ${token}`,
             }
           });
 
@@ -251,4 +298,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
-});
+}); 

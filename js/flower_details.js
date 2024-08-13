@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Error fetching flower details:", error));
 });
-
+//order
 function orderFlower(flower) {
   const userId = localStorage.getItem("user_id");
   const button = document.getElementById("order_submit");
@@ -49,7 +49,7 @@ function orderFlower(flower) {
     }
   });
 }
-
+//desplay flower detail
 function displayFlowerDetails(flower) {
   const detailsContainer = document.getElementById("flower-details");
   detailsContainer.innerHTML = `
@@ -110,7 +110,7 @@ function displayFlowerDetails(flower) {
   postComment(flower.id);
   getComments(flower.id);
 }
-
+//post comment
 const postComment = (flowerId) => {
   const commentButton = document.getElementById("submit_buttons");
   if (!commentButton) {
@@ -150,6 +150,7 @@ const postComment = (flowerId) => {
   });
 };
 
+// get comment
 const getComments = (flowerId) => {
   fetch(`https://django-final-exam-backend-part.onrender.com/flowers/get_comment/${flowerId}/`)
     .then((res) => res.json())
@@ -157,7 +158,7 @@ const getComments = (flowerId) => {
       displayComment(data);
     });
 };
-
+// display comment
 const displayComment = (comments) => {
   const commentCount = document.getElementById("comments-count");
   const commentDiv = document.getElementById("comments-list");
@@ -179,6 +180,7 @@ const displayComment = (comments) => {
   commentDiv.innerHTML = commentsHtml;
 };
 
+// comment edit
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("authToken");
   document.getElementById("comments-list").addEventListener("click", (event) => {
@@ -196,6 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("edit-comment-form").addEventListener("submit", async (event) => {
     event.preventDefault();
+    location.reload();
     const commentId = document.getElementById("edit-comment-id").value;
     const commentName = document.getElementById("edit-comment-name").value;
     const commentBody = document.getElementById("edit-comment-body").value;
@@ -223,15 +226,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // comment delete
   document.getElementById("comments-list").addEventListener("click", async (event) => {
+    const token = localStorage.getItem("authToken");
     if (event.target.classList.contains("delete-comment")) {
       const commentId = event.target.getAttribute("data-id");
 
       if (confirm("Are you sure you want to delete this comment?")) {
+        location.reload();  
         try {
           const response = await fetch(`https://django-final-exam-backend-part.onrender.com/flowers/comments/${commentId}/`, {
             method: "DELETE",
             headers: {
+              "Content-Type": "application/json",
               Authorization: `token ${token}`,
             },
           });

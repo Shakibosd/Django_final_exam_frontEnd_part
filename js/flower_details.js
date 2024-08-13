@@ -227,32 +227,36 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // comment delete
-  document.getElementById("comments-list").addEventListener("click", async (event) => {
-    const token = localStorage.getItem("authToken");
-    if (event.target.classList.contains("delete-comment")) {
-      const commentId = event.target.getAttribute("data-id");
-
-      if (confirm("Are you sure you want to delete this comment?")) {
-        location.reload();  
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('comments-list').addEventListener('click', async (event) => {
+      if (event.target.classList.contains('delete-comment')) {
+        const commentId = event.target.getAttribute('data-id');
         try {
-          const response = await fetch(`https://django-final-exam-backend-part.onrender.com/flowers/comments/${commentId}/`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `token ${token}`,
-            },
-          });
+          if (confirm('Are you sure you want to delete this comment?')) {
 
-          if (response.ok) {
-            const updatedComments = await getComments();
-            displayComment(updatedComments);
-          } else {
-            alert("Failed to delete comment.");
+            const response = await fetch(`https://django-final-exam-backend-part.onrender.com/flowers/comments/${commentId}/`, {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+              }
+            });
+
+            if (response.ok) {
+              const commentElement = event.target.closest('.card');
+              commentElement.remove();
+              const updatedComments = get_comments();
+              displayComment(updatedComments);
+            } else {
+              alert('Failed to delete comment');
+            }
           }
         } catch (error) {
-          console.error("Error deleting comment:", error);
+          console.error('Error:', error);
+          alert('An error occurred while deleting the comment');
+          location.reload();
         }
       }
-    }
+    });
   });
 });

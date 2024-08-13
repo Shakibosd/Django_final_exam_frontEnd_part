@@ -73,11 +73,23 @@ function displayFlowerDetails(flower) {
                     <a href="./profile.html" class="btn btn-success text-white">Back To Profile</a>
                 </div>
                <div>
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal">
-                    Order Now
-                  </button>
-                  <!-- Modal -->
+                  <!-- Button -->
+                  <div class="d-flex gap-3">
+                      <div>
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal">
+                          Order Now
+                          </button>
+                      </div>
+                      <div>
+                          <p>
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                              Comment
+                            </a>
+                          </p>
+                      </div>
+                  </div>
+
+                  <!-- Modal order now -->
                   <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content" style="width:600px; height:220px;">
@@ -94,9 +106,42 @@ function displayFlowerDetails(flower) {
                       </div>
                     </div>
                   </div>
+
+                  <!-- comment area -->
+                  <div class="collapse pt-5" id="collapseExample">
+                    <section class="w-100">
+                          <div class="comment-section card bg-white index_flower_card" id="index_flower_card"
+                            style="border-radius: 10px;">
+                            <div id="commentForm" class="row g-3 mx-auto w-100 gap-3" style="padding-top: 30px">
+                              <div class="col-md-12">
+                                <label for="name" class="form-label"><b>Name</b></label>
+                                <input type="text" class="form-control" id="name" name="name" required />
+                              </div>
+                              <div class="col-md-12">
+                                <label for="text" class="form-label"><b>Messages</b></label>
+                                <textarea class="form-control" id="text" name="text" required></textarea>
+                              </div>
+                              <div class="col-12">
+                                <button type="submit" class="btn btn-outline-info" id="submit_buttons">
+                                  Submit
+                                </button>
+                              </div>
+                              <br />
+                            </div>
+                          </div>
+                          <br />
+
+                          <div id="comments-section" class="container mt-2" style="width: 60rem;">
+                            <h3 class="text-dark">
+                              Total Count >> <span id="comments-count">0</span>
+                            </h3>
+                            <div id="comments-list" class="list-group"></div>
+                          </div>
+                  </section>
+                </div>
               </div>
             </div>
-            <br>
+          <br>
         </div>
     `;
   order_flower(flower);
@@ -108,7 +153,7 @@ function displayFlowerDetails(flower) {
 const post_comment = (flowerId) => {
   const comment_button = document.getElementById("submit_buttons");
   comment_button.addEventListener("click", (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
 
     const username = document.getElementById("name").value;
     const usertext = document.getElementById("text").value;
@@ -138,7 +183,7 @@ const post_comment = (flowerId) => {
         console.error(error);
       });
 
-    console.log(flowerId, username, usertext); 
+    console.log(flowerId, username, usertext);
   });
 };
 
@@ -167,7 +212,7 @@ const displayComment = (comments) => {
       <small>${new Date(comment.created_on).toLocaleString()}</small>
       <br>
       <div>
-          <a class="btn btn-danger delete-comment w-50" data-id="${comment.id}">Delete</a>
+          <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
       </div>    
     </div>
   `).join('');

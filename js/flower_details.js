@@ -234,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("edit-comment-form").addEventListener("submit", async (event) => {
     event.preventDefault();
+    location.reload();
     const commentId = document.getElementById("edit-comment-id").value;
     const commentName = document.getElementById("edit-comment-name").value;
     const commentBody = document.getElementById("edit-comment-body").value;

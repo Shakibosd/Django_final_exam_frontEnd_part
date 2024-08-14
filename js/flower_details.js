@@ -139,7 +139,6 @@ function displayFlowerDetails(flower) {
   order_flower(flower);
   post_comment(flower.id);
   get_comments(flower.id);
-  // CheckOrder(flower.id);
 }
 
 //comment check order
@@ -159,23 +158,20 @@ const CheckOrder = async (flowerId) => {
     const data = await response.json();
     return data.order_exists;
   } catch (error) {
-    console.error('Error checking order:', error);
+    console.error("Error checking order:", error);
     return false;
   }
 };
-
 
 //comment part
 const post_comment = (flowerId) => {
   const comment_button = document.getElementById("submit_buttons");
   comment_button.addEventListener("click", async (event) => {
     event.preventDefault();
-    alert("Comment Successfully!");
-
     const hasOrdered = await CheckOrder(flowerId);
     if (!hasOrdered) {
-      alert("you need to purchase the flower before commenting");
-      return
+      alert("You need to purchase the flower before commenting.");
+      return;
     }
 
     const username = document.getElementById("name").value;
@@ -196,17 +192,13 @@ const post_comment = (flowerId) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");
         }
-        return res.json();
-      })
-      .then((resData) => {
-        console.log(resData);
+        alert("Comment Successfully!");
         location.reload();
       })
       .catch((error) => {
         console.error(error);
+        alert("Failed to post comment.");
       });
-
-    console.log(flowerId, username, usertext);
   });
 };
 

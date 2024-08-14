@@ -139,14 +139,45 @@ function displayFlowerDetails(flower) {
   order_flower(flower);
   post_comment(flower.id);
   get_comments(flower.id);
+  // CheckOrder(flower.id);
 }
+
+//comment check order
+const CheckOrder = async (flowerId) => {
+  const token = localStorage.getItem("authToken");
+  try {
+    const response = await fetch(`https://django-final-exam-backend-part.onrender.com/flowers/check_order/?flowerId=${flowerId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token ${token}`,
+      }
+    });
+    if (!response.ok) {
+      throw new Error("Failed to check order status");
+    }
+    const data = await response.json();
+    return data.order_exists;
+  } catch (error) {
+    console.error('Error checking order:', error);
+    return false;
+  }
+};
+
 
 //comment part
 const post_comment = (flowerId) => {
   const comment_button = document.getElementById("submit_buttons");
-  comment_button.addEventListener("click", (event) => {
+  comment_button.addEventListener("click", async (event) => {
     event.preventDefault();
     alert("Comment Successfully!");
+
+    const hasOrdered = await CheckOrder(flowerId);
+    if (!hasOrdered) {
+      alert("you need to purchase the flower before commenting");
+      return
+    }
+
     const username = document.getElementById("name").value;
     const usertext = document.getElementById("text").value;
 

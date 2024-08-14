@@ -171,6 +171,7 @@ const post_comment = (flowerId) => {
     const hasOrdered = await CheckOrder(flowerId);
     if (!hasOrdered) {
       alert("You need to purchase the flower before commenting.");
+      location.reload();
       return;
     }
 
@@ -201,7 +202,6 @@ const post_comment = (flowerId) => {
       });
   });
 };
-
 
 const get_comments = (flowerId) => {
   fetch(`https://django-final-exam-backend-part.onrender.com/flowers/get_comment/${flowerId}/`)

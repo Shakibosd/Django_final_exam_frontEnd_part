@@ -41,7 +41,6 @@ const handleLogin = (event) => {
     username: formData.get("username"),
     password: formData.get("password"),
   };
-
   fetch("https://django-final-exam-backend-part.onrender.com/users/login/", {
     method: "POST",
     headers: {
@@ -57,6 +56,10 @@ const handleLogin = (event) => {
       return res.json();
     })
     .then((data) => {
+      if (data.is_disabled) {
+        alert("Your account is disabled.");
+        return;
+      }
       console.log("Auth token received:", data.token);
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user_id", data.user_id);

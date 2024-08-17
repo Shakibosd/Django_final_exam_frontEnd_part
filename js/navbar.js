@@ -40,6 +40,7 @@ fetch("navbar.html")
       navElement.innerHTML += `
         <a href="./index.html" class="btn btn-outline-info">Home</a>
         <a href="./register.html" class="btn btn-outline-warning">SignUp</a>
+        <a href="./contact_me.html" class="btn btn-outline-dark">Contact Me</a>
         <a href="./login.html" class="btn btn-outline-primary">Login</a>
       `;
     }

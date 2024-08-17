@@ -27,7 +27,7 @@
     <h1>Create a New Post</h1>
     <!-- post form -->
     <div class="pt-5">
-        <form id="create-post-form" class="pt-3 container card" enctype="multipart/form-data">
+        <form id="create-post-form" class="pt-3 container card" enctype="multipart/form-data" onsubmit="">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required><br>
 
@@ -38,7 +38,7 @@
             <input type="number" id="price" name="price" required><br>
 
             <label for="image">Image :</label>
-            <input type="file" id="image" name="image"><br>
+            <input type="file" id="image" name="image" required><br>
 
             <label for="category">Category:</label>
             <input type="text" id="category" name="category" required><br>
@@ -52,20 +52,20 @@
     </div>
     <br>
     <!-- edit form -->
-    <div id="edit-post-form" style="display: none;">
+    <form id="edit-post-form" style="display: none;">
         <h1>Edit Post</h1>
         <input type="hidden" id="edit-post-id">
         <label for="edit-title">Title:</label>
         <input type="text" id="edit-title" name="edit-title" required><br>
 
-        <label for="edit-content">Content:</label>
-        <textarea id="edit-content" name="edit-content" required></textarea><br>
+        <label for="edit-description">Content:</label>
+        <textarea id="edit-description" name="edit-description" required></textarea><br>
 
         <label for="edit-price">Price:</label>
         <input type="number" id="edit-price" name="edit-price" required><br>
 
-        <label for="edit-image">Image URL:</label>
-        <input type="text" id="edit-image" name="edit-image"><br>
+        <!-- <label for="edit-image">Image:</label> -->
+        <!-- <input type="file" id="edit-image" name="edit-image" required><br> -->
 
         <label for="edit-category">Category:</label>
         <input type="text" id="edit-category" name="edit-category" required><br>
@@ -74,13 +74,13 @@
         <input type="number" id="edit-stock" name="edit-stock" required><br>
 
         <button type="submit">Update Post</button>
-    </div>
+    </form>
 
 
-    <h1>Post List</h1>
+    <h1 class="text-center"><-Post List-></h1>
     <div id="post-list" class="pt-5"></div>
 
-    <h1>User List</h1>
+    <h1 class="text-center"><-User List-></h1>
     <div id="user-list" class="pt-5"></div>
 
 

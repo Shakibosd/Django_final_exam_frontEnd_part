@@ -24,22 +24,65 @@
     <script src="./js/navbar.js"></script>
 
     <!-- Admin Dashboard -->
-    <h1 class="text-center text-dark" style="padding-top: 130px">
-        This Is Admin Dashboard Page
-    </h1>
-    <div class="pt-5 d-flex container gap-5">
-        <div class="card" style="border-radius: 10px; background-color: whitesmoke">
-            <img src="images/admin.svg" alt="login-img" class="login-img" />
-        </div>
-        <div class="w-50 card" style="
-          border-radius: 20px;
-          padding-top: 165px;
-          padding-left: 170px;
-          padding-right: 170px;
-        ">
-            <a class="text-center btn btn-success btn-sm"><b>Click Me To Admin SuperUser Dashboard</b></a>
-        </div>
+    <h1>Create a New Post</h1>
+    <!-- post form -->
+    <div class="pt-5">
+        <form id="create-post-form" class="pt-3 container card" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea><br>
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" required><br>
+
+            <label for="image">Image :</label>
+            <input type="file" id="image" name="image"><br>
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required><br>
+
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock" required><br>
+
+            <button type="submit">Create Post</button>
+            <br>
+        </form>
     </div>
+    <br>
+    <!-- edit form -->
+    <div id="edit-post-form" style="display: none;">
+        <h1>Edit Post</h1>
+        <input type="hidden" id="edit-post-id">
+        <label for="edit-title">Title:</label>
+        <input type="text" id="edit-title" name="edit-title" required><br>
+
+        <label for="edit-content">Content:</label>
+        <textarea id="edit-content" name="edit-content" required></textarea><br>
+
+        <label for="edit-price">Price:</label>
+        <input type="number" id="edit-price" name="edit-price" required><br>
+
+        <label for="edit-image">Image URL:</label>
+        <input type="text" id="edit-image" name="edit-image"><br>
+
+        <label for="edit-category">Category:</label>
+        <input type="text" id="edit-category" name="edit-category" required><br>
+
+        <label for="edit-stock">Stock:</label>
+        <input type="number" id="edit-stock" name="edit-stock" required><br>
+
+        <button type="submit">Update Post</button>
+    </div>
+
+
+    <h1>Post List</h1>
+    <div id="post-list" class="pt-5"></div>
+
+    <h1>User List</h1>
+    <div id="user-list" class="pt-5"></div>
+
 
     <!-- Footer -->
     <div id="footer" class="pt-5"></div>
@@ -56,7 +99,7 @@
 
     <!-- admin js -->
     <script src="./js/admin_deshboard.js"></script>
-    
+
     <!-- bootstrap scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

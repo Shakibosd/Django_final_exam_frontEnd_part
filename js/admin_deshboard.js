@@ -179,12 +179,13 @@ document.getElementById("create-post-form").addEventListener("submit", function 
         title: document.getElementById("title").value,
         description: document.getElementById("description").value,
         price: document.getElementById("price").value,
-        image: document.getElementById("image").value,
+        imageInput: document.getElementById("imageInput").files[0],
         category: document.getElementById("category").value,
         stock: parseInt(document.getElementById("stock").value),
     };
-    console.log(JSON.stringify(formData));
-    // console.log(formData);
+    // console.log(imageInput); 
+    // console.log(JSON.stringify(formData));
+    console.log(formData);
 
     fetch("http://127.0.0.1:8000/admins/post_list/", {
         method: "POST",
@@ -198,6 +199,7 @@ document.getElementById("create-post-form").addEventListener("submit", function 
         .then(data => {
             console.log("Post created:", data);
             alert("Post created successfully!");
+            location.reload();
         })
         .catch(error => console.error("Error creating post:", error));
 });

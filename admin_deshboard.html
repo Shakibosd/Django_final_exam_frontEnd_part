@@ -24,31 +24,38 @@
     <script src="./js/navbar.js"></script>
 
     <!-- Admin Dashboard -->
-    <h1>Create a New Post</h1>
+    <h1 style="padding-top: 130px; text-align: center;">Create a New Post</h1>
     <!-- post form -->
-    <div class="pt-5">
-        <form id="create-post-form" class="pt-3 container card" enctype="multipart/form-data" onsubmit="">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required><br>
-
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea><br>
-
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" required><br>
-
-            <label for="image">Image :</label>
-            <input type="file" id="image" name="image" required><br>
-
-            <label for="category">Category:</label>
-            <input type="text" id="category" name="category" required><br>
-
-            <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" required><br>
-
-            <button type="submit">Create Post</button>
-            <br>
-        </form>
+    <div style="padding-top: 50px;">
+        <div class="d-flex gap-5">
+            <div style="padding-top: 100px; padding-left: 100px;">
+                <img class="w-100 card" style="border-radius: 10px;" src="./images/add.svg" alt>
+            </div>
+            <div style="padding-right: 150px;">
+                <form id="create-post-form" class="pt-3 container card" style="width: 40rem;" enctype="multipart/form-data" method="post">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" class="form-control" required><br>
+        
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" class="form-control" required></textarea><br>
+        
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" class="form-control" required><br>
+        
+                    <label for="image">Image :</label>
+                    <input type="file" id="imageInput" name="image" class="form-control" required><br>
+        
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category" class="form-control" required><br>
+        
+                    <label for="stock">Stock:</label>
+                    <input type="number" id="stock" name="stock" class="form-control" required><br>
+        
+                    <button class="btn btn-success w-25" type="submit">Submit</button>
+                    <br>
+                </form>
+            </div>
+        </div>
     </div>
     <br>
     <!-- edit form -->

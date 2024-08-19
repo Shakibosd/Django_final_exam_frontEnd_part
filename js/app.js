@@ -12,7 +12,7 @@ const displayFlowers = (flowers) => {
     const parent = document.getElementById("flower-container");
     const card = document.createElement("div");
     card.innerHTML = `
-        <div class="card bg-white text-dark pt-3 index_flower_card" style="width:350px; border-radius:10px;">
+        <div class="card bg-white text-dark pt-3 index_flower_card" style="width:350px; border-radius: 15px;">
           <img src="${flower.image}" class="card-img-top mx-auto d-block" alt="${flower.title}" style="width:280px; height:210px; border-radius:10px;">
           <div class="card-body" style="height:230px;">
               <h6 class="card-title">Title: ${flower.title}</h6>

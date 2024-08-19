@@ -2,118 +2,125 @@
 <html lang="en">
 
 <head>
-    <!-- meta charset -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- my web icon -->
-    <link rel="shortcut icon" href="images/img-icon.jpg" type="image/x-icon" />
-    <!-- css linkup -->
-    <link rel="stylesheet" href="./css/style.css" />
-    <!-- my web title -->
-    <title>Admin Dashboard</title>
-    <!-- bootstrap cdn -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <!-- boxicons icon -->
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <!-- meta charset -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- my web icon -->
+  <link rel="shortcut icon" href="images/img-icon.jpg" type="image/x-icon" />
+  <!-- css linkup -->
+  <link rel="stylesheet" href="./css/style.css" />
+  <!-- my web title -->
+  <title>Admin Dashboard</title>
+  <!-- bootstrap cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <!-- boxicons icon -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 </head>
 
 <body>
-    <!-- Navbar -->
-    <div id="navbar"></div>
-    <script src="./js/navbar.js"></script>
+  <!-- Navbar -->
+  <div id="navbar"></div>
+  <script src="./js/navbar.js"></script>
 
-    <!-- Admin Dashboard -->
-    <h1 style="padding-top: 130px; text-align: center;">Create a New Post</h1>
-    <!-- post form -->
-    <div style="padding-top: 50px;">
-        <div class="d-flex gap-5">
-            <div style="padding-top: 100px; padding-left: 100px;">
-                <img class="w-100 card" style="border-radius: 10px;" src="./images/add.svg" alt>
-            </div>
-            <div style="padding-right: 150px;">
-                <form id="create-post-form" class="pt-3 container card" style="width: 40rem;" enctype="multipart/form-data" method="post">
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" class="form-control" required><br>
-        
-                    <label for="description">Description:</label>
-                    <textarea id="description" name="description" class="form-control" required></textarea><br>
-        
-                    <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" class="form-control" required><br>
-        
-                    <label for="image">Image :</label>
-                    <input type="file" id="imageInput" name="image" class="form-control" required><br>
-        
-                    <label for="category">Category:</label>
-                    <input type="text" id="category" name="category" class="form-control" required><br>
-        
-                    <label for="stock">Stock:</label>
-                    <input type="number" id="stock" name="stock" class="form-control" required><br>
-        
-                    <button class="btn btn-success w-25" type="submit">Submit</button>
-                    <br>
-                </form>
-            </div>
-        </div>
+  <!-- Admin Dashboard -->
+  <h1 style="padding-top: 130px; text-align: center;">Create a New Post</h1>
+  <!-- post form -->
+  <div style="padding-top: 50px;">
+    <div class="d-flex gap-5">
+      <div style="padding-top: 100px; padding-left: 100px;">
+        <img class="w-100 card" style="border-radius: 10px;" src="./images/add.svg" alt>
+      </div>
+      <div style="padding-right: 150px;">
+        <form id="create-post-form" class="pt-3 container card index_flower_card"
+          style="width: 40rem; border-radius: 20px;" enctype="multipart/form-data" method="post">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" class="form-control" placeholder="Flower Name" required><br>
+
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" class="form-control" placeholder="Flower Description"
+            required></textarea><br>
+
+          <label for="price">Price:</label>
+          <input type="number" id="price" name="price" class="form-control" placeholder="Flower Price" required><br>
+
+          <label for="image">Image :</label>
+          <input type="text" id="imageInput" name="image" class="form-control" placeholder="Type Imagebb Url" required><br>
+
+          <label for="category">Category:</label>
+          <input type="text" id="category" name="category" class="form-control" placeholder="Flower Category"
+            required><br>
+
+          <label for="stock">Stock:</label>
+          <input type="number" id="stock" name="stock" class="form-control" placeholder="Flower Stock" required><br>
+
+          <button class="btn btn-success w-25" type="submit">Submit</button>
+          <br>
+        </form>
+      </div>
     </div>
-    <br>
-    <!-- edit form -->
-    <form id="edit-post-form" style="display: none;">
-        <h1>Edit Post</h1>
+  </div>
+  <br>
+
+  <!-- edit form -->
+  <h1 class="pt-5 text-center">Edit Post</h1>
+  <div class="pt-5">
+    <form id="edit-post-form" class="pt-4 card w-50 mx-auto index_flower_card" style="border-radius: 20px;">
+      <div class="m-3">
         <input type="hidden" id="edit-post-id">
         <label for="edit-title">Title:</label>
-        <input type="text" id="edit-title" name="edit-title" required><br>
+        <input type="text" id="edit-title" name="edit-title" class="form-control" required><br>
 
-        <label for="edit-description">Content:</label>
-        <textarea id="edit-description" name="edit-description" required></textarea><br>
+        <label for="edit-description">Description:</label>
+        <textarea id="edit-description" name="edit-description" class="form-control" required></textarea><br>
 
         <label for="edit-price">Price:</label>
-        <input type="number" id="edit-price" name="edit-price" required><br>
+        <input type="number" id="edit-price" name="edit-price" class="form-control" required><br>
 
-        <!-- <label for="edit-image">Image:</label> -->
-        <!-- <input type="file" id="edit-image" name="edit-image" required><br> -->
+        <label for="edit-image">Image:</label>
+        <input type="file" id="edit-image" name="edit-image" class="form-control" required><br>
 
         <label for="edit-category">Category:</label>
-        <input type="text" id="edit-category" name="edit-category" required><br>
+        <input type="text" id="edit-category" name="edit-category" class="form-control" required><br>
 
         <label for="edit-stock">Stock:</label>
-        <input type="number" id="edit-stock" name="edit-stock" required><br>
+        <input type="number" id="edit-stock" name="edit-stock" class="form-control" required><br>
 
-        <button type="submit">Update Post</button>
+        <button type="submit" class="btn btn-info">Update Post</button>
+      </div>
+      <br>
     </form>
+  </div>
 
+  <h1 class="text-center pt-5">Post List</h1>
+  <div id="post-list" class="pt-5"></div>
 
-    <h1 class="text-center"><-Post List-></h1>
-    <div id="post-list" class="pt-5"></div>
+  <h1 class="text-center pt-5">User List</h1>
+  <div id="user-list" class="pt-5"></div>
 
-    <h1 class="text-center"><-User List-></h1>
-    <div id="user-list" class="pt-5"></div>
+  <!-- Footer -->
+  <div id="footer" class="pt-5"></div>
+  <script src="./js/footer.js"></script>
 
+  <!-- Auth Js -->
+  <script src="./js/auth.js"></script>
 
-    <!-- Footer -->
-    <div id="footer" class="pt-5"></div>
-    <script src="./js/footer.js"></script>
+  <!-- pass change -->
+  <script src="./js/pass_change.js"></script>
 
-    <!-- Auth Js -->
-    <script src="./js/auth.js"></script>
+  <!-- check js -->
+  <script src="./js/check.js"></script>
 
-    <!-- pass change -->
-    <script src="./js/pass_change.js"></script>
+  <!-- admin js -->
+  <script src="./js/admin_deshboard.js"></script>
 
-    <!-- check js -->
-    <script src="./js/check.js"></script>
-
-    <!-- admin js -->
-    <script src="./js/admin_deshboard.js"></script>
-
-    <!-- bootstrap scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
+  <!-- bootstrap scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -33,11 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
       flowerCard.style.width = "21rem";
 
       flowerCard.innerHTML = `
-       <div class="card bg-white text-dark pt-3 index_flower_card" style="width:350px; border-radius:10px;">
+       <div class="card bg-white text-dark pt-3 index_flower_card" style="width:350px; border-radius:15px;">
           <img src="${flower.image}" class="card-img-top mx-auto d-block" alt="${flower.title}" style="width:280px; height:210px; border-radius:10px;">
           <div class="card-body" style="height:245px;">
-              <h6 class="card-title">Title: ${flower.title}</h6>
-              <p>Price: ${flower.price} ৳</p>
+              <h6 class="card-title">Title : ${flower.title}</h6>
+              <p>Price : ${flower.price} ৳</p>
               Category : <small class="btn btn-secondary btn-sm"> ${flower.category}</small>
               <p>Stock : ${flower.stock}</p>
               <p class="card-text">Description: ${flower.description.slice(0, 20)}...</p>

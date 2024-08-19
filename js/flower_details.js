@@ -59,7 +59,7 @@ function order_flower(flower) {
 function displayFlowerDetails(flower) {
   const detailsContainer = document.getElementById("flower-details");
   detailsContainer.innerHTML = `
-        <div class="card container bg-white text-dark index_flower_card" style="border-radius: 10px;">
+        <div class="card container bg-white text-dark index_flower_card" style="border-radius: 20px;">
             <br>
             <img src="${flower.image}" class="card-img-top mx-auto d-block" alt="${flower.title}" style="width:800px; height:500px; border-radius: 10px;">
             <h1 class="pt-5">${flower.title}</h1>

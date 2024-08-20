@@ -69,7 +69,6 @@ document.getElementById("edit-post-form").addEventListener("submit", function (e
     formData.append('title', document.getElementById("edit-title").value);
     formData.append('description', document.getElementById("edit-description").value);
     formData.append('price', document.getElementById("edit-price").value);
-    formData.append('image', document.getElementById("edit-image").value).files[0];
     formData.append('category', document.getElementById("edit-category").value);
     formData.append('stock', document.getElementById("edit-stock").value);
 
@@ -83,18 +82,23 @@ document.getElementById("edit-post-form").addEventListener("submit", function (e
         headers: {
             Authorization: `token ${token}`,
         },
-        body: JSON.stringify(formData),
+        body: formData, 
     })
-
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to update post");
+            }
+            return response.json();
+        })
         .then(data => {
             console.log("Post updated:", data);
             alert("Post updated successfully!");
             document.getElementById("edit-post-form").style.display = "none";
-            fetchPosts();
-        })
+            fetchPosts(); 
+        })  
         .catch(error => console.error("Error updating post:", error));
 });
+
 
 //delete post
 function deletePost(postId) {
@@ -194,40 +198,6 @@ function toggleUserStatus(userId, disable) {
 
 
 //form post
-// document.getElementById("create-post-form").addEventListener("submit", function (e) {
-//     e.preventDefault();
-//     const token = localStorage.getItem("authToken");
-//     console.log(token);
-//     const formData = {
-//         title: document.getElementById("title").value,
-//         description: document.getElementById("description").value,
-//         price: document.getElementById("price").value,
-//         imageInput: document.getElementById("imageInput"),
-//         category: document.getElementById("category").value,
-//         stock: parseInt(document.getElementById("stock").value),
-//     };
-//     console.log(imageInput);
-//     console.log(JSON.stringify(formData));
-//     // console.log(formData);
-
-//     fetch("http://127.0.0.1:8000/admins/post_list/", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `token ${token}`,
-//         },
-//         body: JSON.stringify(formData),
-//     })
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log("Post created:", data);
-//             alert("Post created successfully!");
-//             location.reload();
-//         })
-//         .catch(error => console.error("Error creating post:", error));
-// });
-
-
 document.getElementById("create-post-form").addEventListener("submit", function (e) {
     e.preventDefault();
 

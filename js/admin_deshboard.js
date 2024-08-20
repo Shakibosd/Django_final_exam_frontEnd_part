@@ -82,7 +82,7 @@ document.getElementById("edit-post-form").addEventListener("submit", function (e
         headers: {
             Authorization: `token ${token}`,
         },
-        body: formData, 
+        body: formData,
     })
         .then(response => {
             if (!response.ok) {
@@ -94,8 +94,8 @@ document.getElementById("edit-post-form").addEventListener("submit", function (e
             console.log("Post updated:", data);
             alert("Post updated successfully!");
             document.getElementById("edit-post-form").style.display = "none";
-            fetchPosts(); 
-        })  
+            fetchPosts();
+        })
         .catch(error => console.error("Error updating post:", error));
 });
 
@@ -178,20 +178,18 @@ function toggleUserStatus(userId, disable) {
         .then(response => response.json())
         .then(data => {
             const statusElement = document.getElementById(`status-${userId}`);
+            const userCard = document.getElementById(`user-${userId}`);
+            const toggleButton = userCard.querySelector("button");
+
+            // Update status text and button
             statusElement.innerHTML = `Disabled: ${disable ? "YES" : "NO"}`;
             statusElement.style.color = disable ? "red" : "green";
 
-            // Update button text and style based on the new status
-            const userCard = document.getElementById(`user-${userId}`);
-            const toggleButton = userCard.querySelector("button");
+            // Toggle button text and class
             toggleButton.textContent = disable ? "Enable" : "Disable";
             toggleButton.className = `btn btn-${disable ? "success" : "danger"}`;
 
-            toggleButton.textContent = enable ? "Disable" : "Enable";
-            toggleButton.className = `btn btn-${enable ? "danger" : "success"}`;
-
             alert(`User ${disable ? "disabled" : "enabled"} successfully.`);
-            alert(`User ${enable ? "enabled" : "disabled"} successfully.`);
         })
         .catch(error => console.error("Error updating user status:", error));
 }

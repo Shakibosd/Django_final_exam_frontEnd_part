@@ -15,8 +15,8 @@ function fetchPosts() {
                         <div class="m-3">
                             <h4>Title : ${post.title}</h4>
                             <p>Description : ${post.description}</p>
-                            <p>Price : $${post.price}</p>
-                            <p>Category : ${post.category}</p>
+                            <p>Price : ${post.price} ৳</p>
+                            <small>Category : <button class="btn btn-secondary"> ${post.category}</button></small>
                             <p>Stock : ${post.stock}</p>
                             <div class="d-flex gap-3">
                             <div>
@@ -245,6 +245,7 @@ document.getElementById("create-post-form").addEventListener("submit", function 
                     .then(postData => {
                         console.log("Post created successfully:", postData);
                         alert("Post created successfully!");
+                        location.reload();
                     })
                     .catch(error => console.error("Error creating post:", error));
             } else {

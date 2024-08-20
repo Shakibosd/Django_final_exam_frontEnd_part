@@ -19,19 +19,19 @@ function fetchPosts() {
                             <p>Category : ${post.category}</p>
                             <p>Stock : ${post.stock}</p>
                             <div class="d-flex gap-3">
-                                <div>
-                                    <button class="btn btn-success" onclick="editPost(${post.id})">Edit</button>
-                                </div>
-                                <div>
-                                    <button class="btn btn-danger" onclick="deletePost(${post.id})">Delete</button>
-                                </div>
-                                <br/>
-                                <br/>
+                            <div>
+                                <button class="btn btn-success" onclick="editPost(${post.id})">Edit</button>
                             </div>
                             <div>
+                                <button class="btn btn-danger" onclick="deletePost(${post.id})">Delete</button>
                             </div>
-                        </div>
+                                <br/>
+                                <br/>
+                            </div>
+                        <div>
                     </div>
+                </div>
+            </div>
                 <br/>
                 <br/>
                 `;
@@ -202,13 +202,13 @@ function toggleUserStatus(userId, disable) {
 //         title: document.getElementById("title").value,
 //         description: document.getElementById("description").value,
 //         price: document.getElementById("price").value,
-//         imageInput: document.getElementById("imageInput").files[0],
+//         imageInput: document.getElementById("imageInput"),
 //         category: document.getElementById("category").value,
 //         stock: parseInt(document.getElementById("stock").value),
 //     };
-//     // console.log(imageInput); 
-//     // console.log(JSON.stringify(formData));
-//     console.log(formData);
+//     console.log(imageInput);
+//     console.log(JSON.stringify(formData));
+//     // console.log(formData);
 
 //     fetch("http://127.0.0.1:8000/admins/post_list/", {
 //         method: "POST",
@@ -227,17 +227,21 @@ function toggleUserStatus(userId, disable) {
 //         .catch(error => console.error("Error creating post:", error));
 // });
 
+
 document.getElementById("create-post-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const fmData = new FormData();
     const image_Input = document.getElementById("imageInput").files[0];
 
+    // Ensure a file is selected
+    if (!image_Input) {
+        alert("Please select an image file.");
+        return;
+    }
+
+    const fmData = new FormData();
     fmData.append('image', image_Input);
 
-    for (let pair of fmData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-    }
     fetch("https://api.imgbb.com/1/upload?key=2bc3cad9a1fb82d25c2c1bb0ab49b035", {
         method: "POST",
         body: fmData,
@@ -258,12 +262,14 @@ document.getElementById("create-post-form").addEventListener("submit", function 
                     image: imageUrl
                 };
 
-                console.log(JSON.stringify(postData));
+                const token = localStorage.getItem("authToken");
 
+                console.log(JSON.stringify(postData));
                 fetch("http://127.0.0.1:8000/admins/post_list/", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Token ${token}`,
                     },
                     body: JSON.stringify(postData),
                 })

@@ -24,27 +24,28 @@
   <script src="./js/navbar.js"></script>
 
   <!-- Login -->
-  <div class="d-flex container gap-5" style="padding-top: 150px;">
-      <div>
-        <img src="images/login.png" alt="login-img" class="login-img" />
-      </div>
-    <div class="w-50 card index_flower_card" style="border-radius : 20px;">
-      <form class="row g-3 mx-auto gap-3" style="padding-top: 70px; width: 550px;" onsubmit="handleLogin(event)" id="login-form">
-        <div class="col-md-12 text-dark">
+  <div class="d-flex container w-75 gap-5 align-items-center" style="padding-top: 9rem;">
+    <div>
+      <img src="images/login.png" alt="login-img" class="login-img w-100 index_flower_card" style="border-radius: 20px;" />
+    </div>
+    <div class="card index_flower_card" style="border-radius : 20px; width: 110rem; height: 22rem;">
+      <form class="row g-3 p-5 m-3" onsubmit="handleLogin(event)" id="login-form">
+        <div class="text-dark">
           <label for="username" class="form-label"><b>Username</b></label>
-          <input type="username" class="form-control" id="username" name="username" placeholder="Please Enter Your Username"
-            required />
+          <input type="username" class="form-control" id="username" name="username"
+            placeholder="Please Enter Your Username" required />
         </div>
-        <div class="col-md-12">
+        <div>
           <label for="password" class="form-label"><b>Password</b></label>
-          <input type="password" class="form-control" id="password" name="password" placeholder="Please Enter Your Password"
-            required />
+          <input type="password" class="form-control" id="password" name="password"
+            placeholder="Please Enter Your Password" required />
         </div>
-        <div class="col-12">
+        <div>
           <button type="submit" class="btn btn-outline-info">
             <b>Sign in</b>
           </button>
         </div>
+        <br>
       </form>
     </div>
   </div>

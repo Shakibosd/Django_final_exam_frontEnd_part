@@ -10,7 +10,7 @@ function fetchPosts() {
                 let postCard = `
                     <div class="post-card card w-50 mx-auto index_flower_card" style="border-radius: 20px;" id="post-${post.id}">
                         <br/>
-                        <img class="w-50 d-block rounded mx-auto" style="height: 200px;" src="${post.image}" alt="${post.title}">
+                        <img class="w-50 d-block mx-auto" style="height: 200px; border-radius:10px;" src="${post.image}" alt="${post.title}">
                         <br/>
                         <div class="m-3">
                             <h4>Title : ${post.title}</h4>

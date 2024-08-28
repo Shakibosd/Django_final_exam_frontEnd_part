@@ -91,7 +91,7 @@ function displayFlowerDetails(flower) {
                                 <section>
                                 <div class="comment-section container card bg-white index_flower_card" id="index_flower_card"
                                   style="border-radius: 10px;">
-                                  <div id="commentForm" class="row g-3 mx-auto w-100 gap-3" style="padding-top: 30px">
+                                  <div id="commentForm" class="row g-3 mx-auto w-100 gap-3" style="padding-top: 30px;">
                                     <div class="col-md-12">
                                       <label for="name" class="form-label"><b>Name</b></label>
                                       <input type="text" class="form-control" id="name" name="name" required />

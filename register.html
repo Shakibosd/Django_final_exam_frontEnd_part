@@ -24,38 +24,44 @@
   <script src="./js/navbar.js"></script>
 
   <!-- register -->
-  <div class="d-flex container gap-4" style="padding-top: 150px;">
-    <div style="padding-top: 65px;">
-      <img src="images/reg.png" alt="login-img" class="signup-img" />
+  <div class="d-flex w-75 container align-items-center gap-5" style="padding-top: 9rem;">
+    <div>
+      <img src="images/reg.png" alt="login-img" class="signup-img w-100 index_flower_card" style="border-radius: 20px;" />
     </div>
-    <div class="text-dark w-50 card index_flower_card" style="border-radius: 20px;">
-      <form class="row g-3 mx-auto gap-3" style="padding-top: 50px; width: 550px;" onsubmit="handleRegister(event)"
+    <div class="text-dark w-100 p-4 card index_flower_card" style="border-radius: 20px;">
+      <form class="row g-3" onsubmit="handleRegister(event)"
         id="register-form">
-        <div class="col-md-12">
+        <div>
           <label for="username" class="form-label"><b>Username</b></label>
-          <input type="username" class="form-control" id="username" name="username" placeholder="Please Enter Your Username" required />
+          <input type="username" class="form-control" id="username" name="username"
+            placeholder="Please Enter Your Username" required />
         </div>
-        <div class="col-md-12">
+        <div>
           <label for="email" class="form-label"><b>Email</b></label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="Please Enter Your Email" required />
+          <input type="email" class="form-control" id="email" name="email" placeholder="Please Enter Your Email"
+            required />
         </div>
-        <div class="col-md-12">
+        <div>
           <label for="first_name" class="form-label"><b>First Name</b></label>
-          <input type="first_name" class="form-control" id="first_name" name="first_name" placeholder="Please Enter Your First Name" required />
+          <input type="first_name" class="form-control" id="first_name" name="first_name"
+            placeholder="Please Enter Your First Name" required />
         </div>
-        <div class="col-md-12">
+        <div>
           <label for="last_name" class="form-label"><b>Last Name</b></label>
-          <input type="last_name" class="form-control" id="last_name" name="last_name" placeholder="Please Enter Your Last Name" required />
+          <input type="last_name" class="form-control" id="last_name" name="last_name"
+            placeholder="Please Enter Your Last Name" required />
         </div>
-        <div class="col-md-12">
+        <div>
           <label for="password" class="form-label"><b>Password</b></label>
-          <input type="password" class="form-control" id="password" name="password" placeholder="Please Enter A Password" required />
+          <input type="password" class="form-control" id="password" name="password"
+            placeholder="Please Enter A Password" required />
         </div>
-        <div class="col-md-12">
+        <div>
           <label for="confirm_password" class="form-label"><b>Confirm Password</b></label>
-          <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Please Enter Confirm Password" required />
+          <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+            placeholder="Please Enter Confirm Password" required />
         </div>
-        <div class="col-12">
+        <div>
           <button type="submit" class="btn btn-outline-info">
             <b>SignUp</b>
           </button>
@@ -65,8 +71,6 @@
           <a href="./login.html" class="btn btn-info btn-sm">Login</a>
         </p>
       </form>
-      <br />
-      <br>
     </div>
   </div>
 

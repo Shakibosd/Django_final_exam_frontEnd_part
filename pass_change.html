@@ -25,31 +25,31 @@
 
   <!-- Login -->
   <h1 class="text-center text-dark" style="padding-top: 130px;">
-    This Is Password Change Page
+     Password Change Page
   </h1>
-  <div class="pt-5 d-flex container gap-5">
-    <div class="card" style="border-radius: 10px; background-color: whitesmoke;">
-      <img src="images/pass.svg" alt="login-img" class="login-img" />
+  <div class="d-flex w-75 container align-items-center gap-5 pt-5">
+    <div>
+      <img src="images/pass.svg" alt="login-img" class="w-100 card index_flower_card" style="border-radius: 20px;" />
     </div>
-    <div class="w-50 card index_flower_card" style="border-radius: 20px;">
-      <form id="changePasswordForm" class="row g-3 mx-auto gap-3" style="padding-top: 70px; width: 550px;">
-        <div class="col-md-12">
+    <div class="w-100 card index_flower_card p-5" style="border-radius: 20px;">
+      <form id="changePasswordForm" class="row g-3">
+        <div>
           <label for="oldPassword" class="form-label text-dark"><b>Old Password</b></label>
-          <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Please Enter Your Old Password"
-            required />
+          <input type="password" class="form-control" id="oldPassword" name="oldPassword"
+            placeholder="Please Enter Your Old Password" required />
         </div>
-        <div class="col-md-12">
+        <div>
           <label for="newPassword" class="form-label text-dark"><b>New Password</b></label>
-          <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Please Enter A New Strong Password"
-            required />
+          <input type="password" class="form-control" id="newPassword" name="newPassword"
+            placeholder="Please Enter A New Strong Password" required />
         </div>
-        <div class="col-12">
+        <div>
           <button type="submit" class="btn btn-outline-info">
             <b>Submit</b>
           </button>
         </div>
       </form>
-      <div id="message" class="text-white pt-3"></div>
+      <div id="message" class="text-white pt-3"></div> 
     </div>
   </div>
 

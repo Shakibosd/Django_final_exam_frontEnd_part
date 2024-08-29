@@ -3,8 +3,8 @@ body {
 }
 
 nav {
-  background-color: #ecececec;
-  box-shadow: 4px 4px 8px gray;
+  background-color: white !important;
+  box-shadow: 4px 4px 8px gray !important;
 }
 
 #fixed_top {
@@ -16,8 +16,7 @@ nav {
 }
 
 .index_flower_card {
-  background-color: #ecececec;
-  box-shadow: 4px 4px 8px gray;
+  box-shadow: 4px 4px 8px gray !important;
 }
 
 .logo-img {
@@ -26,11 +25,6 @@ nav {
   border-radius: 50px;
 }
 
-.deposite-img {
-  width: 400px;
-  height: 380px;
-  border-radius: 5px;
-}
 
 .ekrokom_color {
   background: linear-gradient(90deg, blue 15.94%, cyan 89.53%);
@@ -1324,6 +1318,3 @@ nav {
 .not-loaded * {
   animation-play-state: paused !important;
 }
-
-
-

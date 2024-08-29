@@ -117,16 +117,16 @@ function displayFlowerDetails(flower) {
                   <!-- Modal -->
                   <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
-                    <div class="modal-content" style="width:600px; height:220px;">
-                        <div class="">
-                          <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close" style="padding-left:1150px;"></button>
+                    <div class="modal-content p-3">
+                        <div>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="padding-left:55rem;"></button>
                         </div>
                         <div class="modal-body">
                           <div class="mb-3">
-                              <label for="quantity" class="form-label text-dark"><b>Quantity</b></label>
-                              <input id="quantity" type="number" class="form-control">
+                              <label for="quantity" class="form-label"><b>Quantity</b></label>
+                              <input id="quantity" type="number" class="form-control"  placeholder="Please A Quantity" required />
                           </div>
-                          <button type="button" class="btn btn-primary pl-5" id="order_submit">Submit</button>
+                          <button type="submit" class="btn btn-primary" id="order_submit">Submit</button>
                       </div>
                     </div>
                   </div>

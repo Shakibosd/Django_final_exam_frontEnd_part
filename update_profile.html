@@ -9,6 +9,7 @@
   <link rel="shortcut icon" href="images/img-icon.jpg" type="image/x-icon" />
   <!-- css linkup -->
   <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/dark.css" />
   <!-- my web title -->
   <title>Profile Page</title>
   <!-- bootstrap cdn -->
@@ -26,30 +27,34 @@
   <!-- Profile Update -->
   <section>
     <div style="padding-top: 140px;">
-      <table class="table table-primary container index_flower_card">
-        <thead>
-          <tr>
-            <th scope="col"><b>User</b></th>
-            <th scope="col"><b>Flower</b></th>
-            <th scope="col"><b>Quantity</b></th>
-            <th scope="col"><b>Status</b></th>
-            <th scope="col"><b>Order Date</b></th>
-          </tr>
-        </thead>
-        <tbody id="order-history">
-          <!-- <tr>
-            <th>Naim</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-        </tr> -->
-        </tbody>
-      </table>
+      <div class="w-75 container">
+        <div class="card index_flower_card p-3" style="height: 100px; border-radius: 20px; text-align: center;">
+          <table>
+            <thead>
+              <tr>
+                <th><h4>User</h4></th>
+                <th><h4>Flower</h4></th>
+                <th><h4>Quantity</h4></th>
+                <th><h4>Status</h4></th>
+                <th><h4>Order Date</h4></th>
+              </tr>
+            </thead>
+            <tbody id="order-history">
+              <!-- <tr>
+                <th>Naim</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+            </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </section>
   <section>
-    <h1 class="text-center text-dark pt-5">
+    <h1 class="text-center pt-5">
       Your Profile Page
     </h1>
     <div class="d-flex w-75 container align-items-center gap-5 pt-5">
@@ -58,28 +63,28 @@
           style="border-radius: 20px;" />
       </div>
       <div class="card w-100 index_flower_card p-5" style="border-radius: 20px;">
-        <form class="row g-3 text-dark" id="profile-form">
-          <div class="col-md-12">
+        <form class="row g-3" id="profile-form">
+          <div>
             <label for="username" class="form-label"><b>Username</b></label>
             <input type="text" class="form-control text-dark" id="username" name="username" required
-              style="color: white; font-weight: bold" />
+              style="font-weight: bold" />
           </div>
-          <div class="col-md-12">
+          <div>
             <label for="first_name" class="form-label"><b>First Name</b></label>
             <input type="text" class="form-control text-dark" id="first_name" name="first_name" required
-              style="color: white; font-weight: bold" />
+              style="font-weight: bold" />
           </div>
-          <div class="col-md-12">
+          <div>
             <label for="last_name" class="form-label"><b>Last Name</b></label>
             <input type="text" class="form-control text-dark" id="last_name" name="last_name" required
-              style="color: white; font-weight: bold" />
+              style="font-weight: bold" />
           </div>
-          <div class="col-md-12">
+          <div>
             <label for="email" class="form-label"><b>Email</b></label>
             <input type="email" class="form-control text-dark" id="email" name="email" required
-              style="color: white; font-weight: bold" />
+              style="font-weight: bold" />
           </div>
-          <div class="col-12">
+          <div>
             <button type="submit" class="btn btn-outline-info">
               <b>Update Profile</b>
             </button>
@@ -102,6 +107,9 @@
 
   <!-- check js -->
   <script src="./js/check.js"></script>
+
+  <!-- dark -->
+  <script src="./js/dark.js"></script>
 
   <!-- bootstrap scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

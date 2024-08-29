@@ -9,6 +9,7 @@
   <link rel="shortcut icon" href="images/img-icon.jpg" type="image/x-icon" />
   <!-- css linkup -->
   <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/dark.css" />
   <!-- my web title -->
   <title>Admin Dashboard</title>
   <!-- bootstrap cdn -->
@@ -31,26 +32,26 @@
       <img class="w-100 card index_flower_card" style="border-radius: 20px;" src="./images/add.svg" alt>
     </div>
     <div class="w-100 card index_flower_card p-4" style="border-radius: 20px;">
-      <form id="create-post-form" class="pt-3 g-3" enctype="multipart/form-data" method="post">
+      <form id="create-post-form" class="row g-3" enctype="multipart/form-data" method="post">
         <label for="title"><b>Title</b></label>
-        <input type="text" id="title" name="title" class="form-control" placeholder="Flower Name" required><br>
+        <input type="text" id="title" name="title" class="form-control" placeholder="Flower Name" required />
 
         <label for="description"><b>Description</b></label>
         <textarea id="description" name="description" class="form-control" placeholder="Flower Description"
-          required></textarea><br>
+          required></textarea>
 
         <label for="price"><b>Price</b></label>
-        <input type="number" id="price" name="price" class="form-control" placeholder="Flower Price" required><br>
+        <input type="number" id="price" name="price" class="form-control" placeholder="Flower Price" required />
 
-        <label for="image"><b>Image</b></label>
-        <input type="file" id="imageInput" name="image" class="form-control" required><br>
+        <label for="imageInput"><b>Image</b></label>
+        <input type="file" id="imageInput" name="imageInput" class="form-control" required />
+
 
         <label for="category"><b>Category</b></label>
-        <input type="text" id="category" name="category" class="form-control" placeholder="Flower Category"
-          required><br>
+        <input type="text" id="category" name="category" class="form-control" placeholder="Flower Category" required />
 
         <label for="stock"><b>Stock</b></label>
-        <input type="number" id="stock" name="stock" class="form-control" placeholder="Flower Stock" required><br>
+        <input type="number" id="stock" name="stock" class="form-control" placeholder="Flower Stock" required />
 
         <button class="btn btn-success w-25" type="submit">Submit</button>
         <br>
@@ -65,27 +66,28 @@
   <br>
   <div class="card w-50 mx-auto index_flower_card p-4" style="border-radius: 20px;">
     <form id="edit-post-form" style="border-radius: 20px;">
-      <div class="m-3">
+      <div class="row g-3">
         <input type="hidden" id="edit-post-id">
         <label for="edit-title"><b>Title</b></label>
-        <input type="text" id="edit-title" name="edit-title" class="form-control" required><br>
+        <input type="text" id="edit-title" name="edit-title" class="form-control" required />
 
         <label for="edit-description"><b>Description</b></label>
-        <textarea id="edit-description" name="edit-description" class="form-control" required></textarea><br>
+        <textarea id="edit-description" name="edit-description" class="form-control" required></textarea>
 
         <label for="edit-price"><b>Price</b></label>
-        <input type="number" id="edit-price" name="edit-price" class="form-control" required><br>
+        <input type="number" id="edit-price" name="edit-price" class="form-control" required />
 
         <label for="edit-image"><b>Image</b></label>
-        <input type="file" id="edit-image" name="edit-image" class="form-control"><br>
+        <input type="file" id="edit-image" name="edit-image" class="form-control" required />
+
 
         <label for="edit-category"><b>Category</b></label>
-        <input type="text" id="edit-category" name="edit-category" class="form-control" required><br>
+        <input type="text" id="edit-category" name="edit-category" class="form-control" required />
 
         <label for="edit-stock"><b>Stock</b></label>
-        <input type="number" id="edit-stock" name="edit-stock" class="form-control" required><br>
+        <input type="number" id="edit-stock" name="edit-stock" class="form-control" required />
 
-        <button type="submit" class="btn btn-info">Update Post</button>
+        <button type="submit" class="btn btn-info w-25">Update Post</button>
       </div>
       <br>
     </form>
@@ -112,6 +114,9 @@
 
   <!-- admin js -->
   <script src="./js/admin_deshboard.js"></script>
+
+  <!-- dark -->
+  <script src="./js/dark.js"></script>
 
   <!-- bootstrap scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

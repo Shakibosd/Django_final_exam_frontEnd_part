@@ -9,6 +9,7 @@
   <link rel="shortcut icon" href="images/img-icon.jpg" type="image/x-icon" />
   <!-- css linkup -->
   <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/dark.css" />
   <!-- my web title -->
   <title>Password Change Page</title>
   <!-- bootstrap cdn -->
@@ -24,8 +25,8 @@
   <script src="./js/navbar.js"></script>
 
   <!-- Login -->
-  <h1 class="text-center text-dark" style="padding-top: 130px;">
-     Password Change Page
+  <h1 class="text-center" style="padding-top: 130px;">
+    Password Change Page
   </h1>
   <div class="d-flex w-75 container align-items-center gap-5 pt-5">
     <div>
@@ -34,12 +35,12 @@
     <div class="w-100 card index_flower_card p-5" style="border-radius: 20px;">
       <form id="changePasswordForm" class="row g-3">
         <div>
-          <label for="oldPassword" class="form-label text-dark"><b>Old Password</b></label>
+          <label for="oldPassword" class="form-label"><b>Old Password</b></label>
           <input type="password" class="form-control" id="oldPassword" name="oldPassword"
             placeholder="Please Enter Your Old Password" required />
         </div>
         <div>
-          <label for="newPassword" class="form-label text-dark"><b>New Password</b></label>
+          <label for="newPassword" class="form-label"><b>New Password</b></label>
           <input type="password" class="form-control" id="newPassword" name="newPassword"
             placeholder="Please Enter A New Strong Password" required />
         </div>
@@ -49,7 +50,7 @@
           </button>
         </div>
       </form>
-      <div id="message" class="text-white pt-3"></div> 
+      <div id="message" class="text-white pt-3"></div>
     </div>
   </div>
 
@@ -65,6 +66,9 @@
 
   <!-- check js -->
   <script src="./js/check.js"></script>
+
+  <!-- dark -->
+  <script src="./js/dark.js"></script>
 
   <!-- bootstrap scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

@@ -19,18 +19,18 @@ fetch("navbar.html")
         .then(result => {
           if (result.is_admin) {
             navElement.innerHTML += `
-            <a href="./profile.html" class="btn btn-outline-success">Home</a>
-            <a class="btn btn-outline-primary" href="./update_profile.html">Profile</a>
-            <a href="./pass_change.html" class="btn btn-outline-info">Password Change</a>
-            <a href="./admin_deshboard.html" class="btn btn-outline-secondary">Admin Dashboard</a>
+            <a href="./profile.html" class="btn btn-success">Home</a>
+            <a class="btn btn-primary" href="./update_profile.html">Profile</a>
+            <a href="./pass_change.html" class="btn btn-info">Password Change</a>
+            <a href="./admin_deshboard.html" class="btn btn-warning">Admin Dashboard</a>
             <a class="btn btn-danger" onclick="handleLogout()">Logout</a>
           `;
           }
           else {
             navElement.innerHTML += `
-            <a href="./profile.html" class="btn btn-outline-success">Home</a>
-            <a class="btn btn-outline-primary" href="./update_profile.html">Profile</a>
-            <a href="./pass_change.html" class="btn btn-outline-info">Password Change</a>
+            <a href="./profile.html" class="btn btn-success">Home</a>
+            <a class="btn btn-primary" href="./update_profile.html">Profile</a>
+            <a href="./pass_change.html" class="btn btn-info">Password Change</a>
             <a class="btn btn-danger" onclick="handleLogout()">Logout</a>
           `;
           }
@@ -38,10 +38,10 @@ fetch("navbar.html")
     }
     else {
       navElement.innerHTML += `
-        <a href="./index.html" class="btn btn-outline-info">Home</a>
-        <a href="./register.html" class="btn btn-outline-success">SignUp</a>
-        <a href="./contact_me.html" class="btn btn-outline-primary">Contact Me</a>
-        <a href="./login.html" class="btn btn-outline-secondary">Login</a>
+        <a href="./index.html" class="btn btn-info">Home</a>
+        <a href="./register.html" class="btn btn-success">SignUp</a>
+        <a href="./contact_me.html" class="btn btn-primary">Contact Me</a>
+        <a href="./login.html" class="btn btn-warning">Login</a>
       `;
     }
   });

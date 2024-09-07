@@ -8,7 +8,7 @@ fetch("navbar.html")
     const token = localStorage.getItem("authToken");
 
     if (token) {
-      fetch("https://django-final-exam-backend-part.onrender.com/admins/is_admin/", {
+      fetch("http://127.0.0.1:8000/admins/is_admin/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

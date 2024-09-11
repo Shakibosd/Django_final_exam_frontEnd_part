@@ -5,13 +5,6 @@ const handleRegister = (event) => {
   const formData = new FormData(form);
   //   console.log(formData);
 
-  // Append profile_image if available
-  const imageInput = document.getElementById("profile_image");
-  if (imageInput.files.length > 0) {
-    formData.append("profile_image", imageInput.files[0]);
-  }
-
-
   const registerData = {
     username: formData.get("username"),
     first_name: formData.get("first_name"),

@@ -13,10 +13,10 @@ fetch("navbar.html")
         headers: {
           "Content-Type": "application/json",
           Authorization: `token ${token}`,
-        }
+        },
       })
-        .then(response => response.json())
-        .then(result => {
+        .then((response) => response.json())
+        .then((result) => {
           if (result.is_admin) {
             navElement.innerHTML += `
             <a href="./profile.html" class="btn btn-success">Home</a>
@@ -25,8 +25,7 @@ fetch("navbar.html")
             <a href="./admin_deshboard.html" class="btn btn-warning">Admin Dashboard</a>
             <a class="btn btn-danger" onclick="handleLogout()">Logout</a>
           `;
-          }
-          else {
+          } else {
             navElement.innerHTML += `
             <a href="./profile.html" class="btn btn-success">Home</a>
             <a class="btn btn-primary" href="./update_profile.html">Profile</a>
@@ -35,8 +34,7 @@ fetch("navbar.html")
           `;
           }
         });
-    }
-    else {
+    } else {
       navElement.innerHTML += `
         <a href="./index.html" class="btn btn-info">Home</a>
         <a href="./register.html" class="btn btn-success">SignUp</a>

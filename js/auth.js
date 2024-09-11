@@ -5,6 +5,13 @@ const handleRegister = (event) => {
   const formData = new FormData(form);
   //   console.log(formData);
 
+  // Append profile_image if available
+  const imageInput = document.getElementById("profile_image");
+  if (imageInput.files.length > 0) {
+    formData.append("profile_image", imageInput.files[0]);
+  }
+
+
   const registerData = {
     username: formData.get("username"),
     first_name: formData.get("first_name"),
@@ -23,12 +30,12 @@ const handleRegister = (event) => {
     },
     body: JSON.stringify(registerData),
   }).then((res) => {
+    console.log(res);
     alert(
       "Registration Successfull. Please check email for confirmation email",
     );
     window.location.href = "./login.html";
   });
-  // .then((data) => console.log(data));
 };
 
 //login part
@@ -56,14 +63,11 @@ const handleLogin = (event) => {
       return res.json();
     })
     .then((data) => {
-      if (data.is_disabled) {
-        alert("Your account is disabled.");
-        return;
-      }
       console.log("Auth token received:", data.token);
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user_id", data.user_id);
       window.location.href = "./profile.html";
+      alert("Logdin Successfull!");
     })
     .catch((err) => {
       console.log("Login error", err.message);
@@ -90,6 +94,7 @@ const handleLogout = () => {
           localStorage.removeItem("authToken");
           localStorage.removeItem("user_id");
           window.location.href = "./login.html";
+          alert("Logout Successfull!");
         } else {
           console.log("Logout failed");
         }
@@ -97,4 +102,4 @@ const handleLogout = () => {
       .catch((err) => console.log("Logout Error", err));
   }
 };
-document.getElementById("logoutButton").addEventListener("click", handleLogout);
+

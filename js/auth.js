@@ -23,12 +23,12 @@ const handleRegister = (event) => {
     },
     body: JSON.stringify(registerData),
   }).then((res) => {
-    console.log(res);
     alert(
       "Registration Successfull. Please check email for confirmation email",
     );
     window.location.href = "./login.html";
   });
+  // .then((data) => console.log(data));
 };
 
 //login part
@@ -59,8 +59,7 @@ const handleLogin = (event) => {
       console.log("Auth token received:", data.token);
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user_id", data.user_id);
-      window.location.href = "./update_profile.html";
-      alert("Logdin Successfull!");
+      window.location.href = "./profile.html";
     })
     .catch((err) => {
       console.log("Login error", err.message);
@@ -87,7 +86,6 @@ const handleLogout = () => {
           localStorage.removeItem("authToken");
           localStorage.removeItem("user_id");
           window.location.href = "./login.html";
-          alert("Logout Successfull!");
         } else {
           console.log("Logout failed");
         }
@@ -95,4 +93,3 @@ const handleLogout = () => {
       .catch((err) => console.log("Logout Error", err));
   }
 };
-

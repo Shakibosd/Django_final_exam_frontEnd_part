@@ -30,7 +30,7 @@ function order_flower(flower) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-        },
+        },  
         body: JSON.stringify({
           user_id: parseInt(userId),
           product_id: flower.id,

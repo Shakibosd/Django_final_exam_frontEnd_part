@@ -1,6 +1,6 @@
 //post 
 function fetchPosts() {
-    fetch("http://127.0.0.1:8000/flowers/flowers/")
+    fetch("https://django-final-exam-backend-part.onrender.com/flowers/flowers/")
         .then(response => response.json())
         .then(data => {
             let postList = document.getElementById("post-list");
@@ -45,7 +45,7 @@ function fetchPosts() {
 //edit post
 function editPost(postId) {
     console.log("inside edit post", postId);
-    fetch(`http://127.0.0.1:8000/flowers/flowers/${postId}/`)
+    fetch(`https://django-final-exam-backend-part.onrender.com/flowers/flowers/${postId}/`)
         .then(response => response.json())
         .then(post => {
             document.getElementById("edit-post-id").value = post.id;
@@ -77,7 +77,7 @@ document.getElementById("edit-post-form").addEventListener("submit", function (e
         formData.append('image', imageFile);
     }
 
-    fetch(`http://127.0.0.1:8000/flowers/flowers/${postId}/`, {
+    fetch(`https://django-final-exam-backend-part.onrender.com/flowers/flowers/${postId}/`, {
         method: "PUT",
         headers: {
             Authorization: `token ${token}`,
@@ -104,7 +104,7 @@ document.getElementById("edit-post-form").addEventListener("submit", function (e
 function deletePost(postId) {
     const token = localStorage.getItem("authToken");
     if (confirm("Are you sure you want to delete this post?")) {
-        fetch(`http://127.0.0.1:8000/admins/post_detail/${postId}/`, {
+        fetch(`https://django-final-exam-backend-part.onrender.com/admins/post_detail/${postId}/`, {
             method: "DELETE",
             headers: {
                 Authorization: `token ${token}`,
@@ -125,7 +125,7 @@ function deletePost(postId) {
 // Fetch user list
 function fetchUsers() {
     const token = localStorage.getItem("authToken");
-    fetch("http://127.0.0.1:8000/admins/user_list/", {
+    fetch("https://django-final-exam-backend-part.onrender.com/admins/user_list/", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -164,8 +164,8 @@ function fetchUsers() {
 function toggleUserStatus(userId, disable) {
     const token = localStorage.getItem("authToken");
     const url = disable
-        ? `http://127.0.0.1:8000/admins/disable_user/${userId}/`
-        : `http://127.0.0.1:8000/admins/enable_user/${userId}/`;
+        ? `https://django-final-exam-backend-part.onrender.com/admins/disable_user/${userId}/`
+        : `https://django-final-exam-backend-part.onrender.com/admins/enable_user/${userId}/`;
 
     fetch(url, {
         method: "PATCH",
@@ -233,7 +233,7 @@ document.getElementById("create-post-form").addEventListener("submit", function 
                 const token = localStorage.getItem("authToken");
 
                 console.log(JSON.stringify(postData));
-                fetch("http://127.0.0.1:8000/admins/post_list/", {
+                fetch("https://django-final-exam-backend-part.onrender.com/admins/post_list/", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',

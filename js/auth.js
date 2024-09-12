@@ -59,7 +59,7 @@ const handleLogin = (event) => {
       console.log("Auth token received:", data.token);
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user_id", data.user_id);
-      window.location.href = "./profile.html";
+      window.location.href = "./update_profile.html";
     })
     .catch((err) => {
       console.log("Login error", err.message);

@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       console.log("Fetched data:", data);
       const orderHistoryTable = document.getElementById("order-history");
-      orderHistoryTable.innerHTML = '';
+      orderHistoryTable.innerHTML = "";
       data.forEach((order) => {
         const row = document.createElement("tr");
         row.innerHTML = `

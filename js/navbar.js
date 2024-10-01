@@ -8,7 +8,7 @@ fetch("navbar.html")
     const token = localStorage.getItem("authToken");
 
     if (token) {
-      fetch("https://django-final-exam-backend-part.onrender.com/admins/is_admin/", {
+      fetch("http://127.0.0.1:8000/admins/is_admin/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -19,19 +19,19 @@ fetch("navbar.html")
         .then((result) => {
           if (result.is_admin) {
             navElement.innerHTML += `
-            <a href="./profile.html" class="btn btn-success">Home</a>
-            <a class="btn btn-primary" href="./update_profile.html">Profile</a>
-            <a href="./pass_change.html" class="btn btn-info">Password Change</a>
-            <a href="./admin_deshboard.html" class="btn btn-warning">Admin Dashboard</a>
-            <a class="btn btn-danger" onclick="handleLogout()">Logout</a>
-          `;
+              <a href="./profile.html" class="btn btn-success">Home</a>
+              <a class="btn btn-primary" href="./update_profile.html">Profile</a>
+              <a href="./pass_change.html" class="btn btn-info">Password Change</a>
+              <a href="./admin_deshboard.html" class="btn btn-warning">Admin Dashboard</a>
+              <a class="btn btn-danger" onclick="handleLogout()">Logout</a>
+            `;
           } else {
             navElement.innerHTML += `
-            <a href="./profile.html" class="btn btn-success">Home</a>
-            <a class="btn btn-primary" href="./update_profile.html">Profile</a>
-            <a href="./pass_change.html" class="btn btn-info">Password Change</a>
-            <a class="btn btn-danger" onclick="handleLogout()">Logout</a>
-          `;
+              <a href="./profile.html" class="btn btn-success">Home</a>
+              <a class="btn btn-primary" href="./update_profile.html">Profile</a>
+              <a href="./pass_change.html" class="btn btn-info">Password Change</a>
+              <a class="btn btn-danger" onclick="handleLogout()">Logout</a>
+            `;
           }
         });
     } else {

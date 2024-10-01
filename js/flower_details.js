@@ -30,7 +30,7 @@ function order_flower(flower) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-        },  
+        },
         body: JSON.stringify({
           user_id: parseInt(userId),
           product_id: flower.id,
@@ -61,30 +61,41 @@ function displayFlowerDetails(flower) {
   detailsContainer.innerHTML = `
         <div class="card container bg-white text-dark index_flower_card" style="border-radius: 20px;">
             <br>
-            <img src="${flower.image}" class="card-img-top mx-auto d-block" alt="${flower.title}" style="width:800px; height:500px; border-radius: 10px;">
+            <img src="${flower.image}" class="img-fluid mx-auto d-block" alt="${flower.title}" style="width:800px; height:500px; border-radius: 10px;">
             <h1 class="pt-5">${flower.title}</h1>
             <p>Price : ${flower.price} ৳</p>
             <p>Category : <span class="btn btn-secondary">${flower.category}</span></p>
             <p>Stock : ${flower.stock}</p>
             <p>Description : ${flower.description}</p>   
             <br>
+                 <div class="row g-2">
+                <div class="col-12">
+                    <a href="./profile.html" class="btn btn-success text-white w-100">Back To Profile</a>
+                </div>
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#orderModal">
+                      Order Now
+                    </button>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-warning w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      Comment
+                    </button>
+                </div>
+              </div>
             <div class="d-flex gap-3">
                 <div>
-                    <a href="./profile.html" class="btn btn-success text-white">Back To Profile</a>
+                    
                 </div>
                <div>
                   <!-- Button trigger modal -->
                   <div class="d-flex gap-3">
                      <div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal">
-                         Order Now
-                        </button>
+                   
                      </div>
                          <div>
                             <p>
-                            <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                              Comment
-                            </button>
+                            
                              </p>
                           <div class="collapse" id="collapseExample">
                             <div class="card-body">
@@ -221,14 +232,14 @@ const displayComment = (comments) => {
   commentCount.innerHTML = `${comments.length}`;
 
   let commentsHtml = comments.map(comment => `
-    <div class="bg-white text-dark card p-4 mb-3 w-25 index_flower_card" style="border-radius: 10px;">
-      <h6>${comment.name}</h6> 
+    <div class="card bg-white text-dark p-3 index_flower_card" style="border-radius: 10px;">
+      <h5>${comment.name}</h5> 
       <p>${comment.body}</p>
-      <small>${new Date(comment.created_on).toLocaleString()}</small>
+      <small>${comment.created_on}</small>
       <br>
-     <div class="d-flex gap-5">
+      <div class="d-flex gap-3">
         <div>
-            <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
+          <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
         </div>
         <div>
           <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
@@ -236,8 +247,10 @@ const displayComment = (comments) => {
       </div>   
     </div>
   `).join("");
+  
   commentdiv.innerHTML = commentsHtml;
 };
+
 
 //comment edit
 document.addEventListener("DOMContentLoaded", () => {

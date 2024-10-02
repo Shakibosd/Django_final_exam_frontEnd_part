@@ -8,9 +8,9 @@ function fetchPosts() {
             data.forEach(post => {
                 console.log(post.id);
                 let postCard = `
-                    <div class="post-card card w-50 mx-auto index_flower_card" style="border-radius: 20px;" id="post-${post.id}">
+                    <div class="post-card card w-100 index_flower_card" style="border-radius: 20px;" id="post-${post.id}">
                         <br/>
-                        <img class="w-50 d-block mx-auto" style="height: 200px; border-radius:10px;" src="${post.image}" alt="${post.title}">
+                        <img class="w-50 d-block mx-auto" style="height: 300px; border-radius:10px;" src="${post.image}" alt="${post.title}">
                         <br/>
                         <div class="m-3">
                             <h4>Title : ${post.title}</h4>
@@ -138,14 +138,14 @@ function fetchUsers() {
             userList.innerHTML = "";
             data.forEach(user => {
                 let userCard = `
-                <div class="user-card card mx-auto w-50 pt-3 index_flower_card" style="border-radius:20px;" id="user-${user.id}">
+                <div class="user-card card mx-auto w-100 pt-5 index_flower_card" style="border-radius:20px;" id="user-${user.id}">
                     <div class="m-4">
                          <h3>Username : ${user.username}</h3>
                             <p>First Name: ${user.first_name}</p>
                             <p>Last Name: ${user.last_name}</p>
                             <p>Email: ${user.email}</p>
                             <p id="status-${user.id}">Disabled: ${user.is_disabled ? "YES" : "NO"}</p>
-                            <button class="w-25 btn btn-${user.is_disabled ? "success" : "danger"}" 
+                            <button class="w-50 btn btn-${user.is_disabled ? "success" : "danger"}" 
                                 onclick="toggleUserStatus(${user.id}, ${user.is_disabled ? 'false' : 'true'})">
                                 ${user.is_disabled ? "Enable" : "Disable"}
                             </button>

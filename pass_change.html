@@ -29,37 +29,33 @@
   <h1 class="text-center" style="padding-top: 150px;">
     Password Change Page
   </h1>
-
   <div class="container pt-5">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-12 col-md-6 mb-4 mb-md-0">
+    <div class="d-flex flex-column flex-md-row align-items-center gap-5 w-100 mx-auto">
+      <div class="mb-4 mb-md-0">
         <img src="images/pass.svg" alt="login-img" class="w-100 card index_flower_card" style="border-radius: 20px;" />
       </div>
-      <div class="col-12 col-md-6">
-        <div class="card index_flower_card p-4" style="border-radius: 20px;">
-          <form id="changePasswordForm" class="row g-3">
-            <div class="col-12">
-              <label for="oldPassword" class="form-label"><b>Old Password</b></label>
-              <input type="password" class="form-control" id="oldPassword" name="oldPassword"
-                placeholder="Please Enter Your Old Password" required />
-            </div>
-            <div class="col-12">
-              <label for="newPassword" class="form-label"><b>New Password</b></label>
-              <input type="password" class="form-control" id="newPassword" name="newPassword"
-                placeholder="Please Enter A New Strong Password" required />
-            </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-outline-info w-100">
-                <b>Submit</b>
-              </button>
-            </div>
-          </form>
-          <div id="message" class="text-white pt-3"></div>
-        </div>
+      <div class="w-100 card index_flower_card p-5" style="border-radius: 20px;">
+        <form id="changePasswordForm" class="row g-3">
+          <div class="col-12">
+            <label for="oldPassword" class="form-label"><b>Old Password</b></label>
+            <input type="password" class="form-control" id="oldPassword" name="oldPassword"
+              placeholder="Please Enter Your Old Password" required />
+          </div>
+          <div class="col-12">
+            <label for="newPassword" class="form-label"><b>New Password</b></label>
+            <input type="password" class="form-control" id="newPassword" name="newPassword"
+              placeholder="Please Enter A New Strong Password" required />
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-outline-info w-100">
+              <b>Submit</b>
+            </button>
+          </div>
+        </form>
+        <div id="message" class="text-white pt-3"></div>
       </div>
     </div>
   </div>
-  
 
   <!-- Footer -->
   <div id="footer" class="pt-5"></div>

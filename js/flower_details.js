@@ -232,24 +232,27 @@ const displayComment = (comments) => {
   commentCount.innerHTML = `${comments.length}`;
 
   let commentsHtml = comments.map(comment => `
-    <div class="card bg-white text-dark p-3 index_flower_card" style="border-radius: 10px;">
-      <h5>${comment.name}</h5> 
-      <p>${comment.body}</p>
-      <small>${comment.created_on}</small>
-      <br>
-      <div class="d-flex gap-3">
-        <div>
-          <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
-        </div>
-        <div>
-          <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
-        </div>    
-      </div>   
+    <div class="col-md-4 col-lg-6 mb-4">
+      <div class="card bg-white text-dark p-3 index_flower_card" style="border-radius: 10px;">
+        <h5>${comment.name}</h5> 
+        <p>${comment.body}</p>
+        <small>${comment.created_on}</small>
+        <br>
+        <div class="d-flex gap-3">
+          <div>
+            <a class="btn btn-success edit-comment" data-id="${comment.id}" data-name="${comment.name}" data-body="${comment.body}">Edit</a>
+          </div>
+          <div>
+            <a class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</a>
+          </div>    
+        </div>   
+      </div>
     </div>
   `).join("");
   
-  commentdiv.innerHTML = commentsHtml;
+  commentdiv.innerHTML = `<div class="row">${commentsHtml}</div>`;
 };
+
 
 
 //comment edit

@@ -61,11 +61,24 @@
         <span id="comments-count" class="badge bg-secondary">0</span>
       </h3>
       <div id="comments-section" class="mt-5" style="padding-left: 2rem;">
-        <div id="comments-list" class="d-flex gap-3 list-group" style="width: 82%;"></div>
+        <div id="comments-list" class="list-group"></div>
       </div>
-      
+
+      <style>
+        @media (max-width: 768px) {
+          .list-group {
+            width: 82%;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          #comments-list {
+            width: 50%;
+          }
+        }
+      </style>
     </section>
-  </main>
+  </main> 
 
   <!-- Footer -->
   <div id="footer" class="pt-5"></div>

@@ -39,17 +39,19 @@
       <img class="col-12 col-md-6 w-100 card index_flower_card" style="border-radius: 20px;"  src="./images/login.svg" alt="" />
     </div>
     <div class="card index_flower_card w-100" style="border-radius : 20px;">
-      <form class="row g-3 p-4 m-3" onsubmit="handleLogin(event)" id="login-form">
+      <form class="p-5" onsubmit="handleLogin(event)" id="login-form">
         <div>
           <label for="username" class="form-label"><b>Username</b></label>
           <input type="text" class="form-control" id="username" name="username"
             placeholder="Please Enter Your Username" required />
         </div>
+        <br>
         <div>
           <label for="password" class="form-label"><b>Password</b></label>
           <input type="password" class="form-control" id="password" name="password"
             placeholder="Please Enter Your Password" required />
         </div>
+        <br>
         <div>
           <button type="submit" class="btn btn-outline-info">
             <b>Sign in</b>

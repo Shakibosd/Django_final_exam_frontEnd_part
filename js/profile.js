@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function fetchFlowers(filter) {
-    fetch("http://127.0.0.1:8000/flowers/flowers/")
+    fetch("https://flower-seal.vercel.app/flowers/flowers/")
       .then((res) => res.json())
       .then((data) => {
         let filteredFlowers = data;
@@ -35,14 +35,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
       flowerCard.innerHTML = `
         <div class="card bg-white text-dark pt-3 index_flower_card" style="border-radius:15px;">
-          <img src="${flower.image}" class="img-fluid mx-auto d-block" alt="${flower.title}" style="width:80%; height:210px; border-radius:10px;">
+          <img src="${flower.image}" class="img-fluid mx-auto d-block" alt="${
+        flower.title
+      }" style="width:80%; height:210px; border-radius:10px;">
           <div class="card-body">
             <h6 class="card-title">Title : ${flower.title}</h6>
             <p>Price : ${flower.price} ৳</p>
-            Category : <small class="btn btn-secondary btn-sm"> ${flower.category}</small>
+            Category : <small class="btn btn-secondary btn-sm"> ${
+              flower.category
+            }</small>
             <p>Stock : ${flower.stock}</p>
-            <p class="card-text">Description: ${flower.description.slice(0, 20)}...</p>
-            <a class="btn btn-primary btn-sm w-50" href="./flower_details.html?id=${flower.id}">Details</a>
+            <p class="card-text">Description: ${flower.description.slice(
+              0,
+              20
+            )}...</p>
+            <a class="btn btn-primary btn-sm w-50" href="./flower_details.html?id=${
+              flower.id
+            }">Details</a>
           </div>
         </div>
       `;
@@ -54,4 +63,3 @@ document.addEventListener("DOMContentLoaded", () => {
     flowerCountElement.innerText = `Total Flowers: ${flowers.length} !`;
   }
 });
-

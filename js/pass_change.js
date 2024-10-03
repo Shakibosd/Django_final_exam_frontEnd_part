@@ -1,4 +1,5 @@
-document.getElementById("changePasswordForm")
+document
+  .getElementById("changePasswordForm")
   .addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -8,17 +9,20 @@ document.getElementById("changePasswordForm")
     console.log(authToken);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/profiles/pass_cng/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${authToken}`,
-        },
-        body: JSON.stringify({
-          old_password: oldPassword,
-          new_password: newPassword,
-        }),
-      });
+      const response = await fetch(
+        "https://flower-seal.vercel.app/profiles/pass_cng/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${authToken}`,
+          },
+          body: JSON.stringify({
+            old_password: oldPassword,
+            new_password: newPassword,
+          }),
+        }
+      );
 
       const messageElement = document.getElementById("message");
 

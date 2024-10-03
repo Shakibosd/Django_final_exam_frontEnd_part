@@ -16,7 +16,7 @@ const handleRegister = (event) => {
 
   console.log("registration data", registerData);
 
-  fetch("http://127.0.0.1:8000/users/register/", {
+  fetch("https://flower-seal.vercel.app/users/register/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +24,7 @@ const handleRegister = (event) => {
     body: JSON.stringify(registerData),
   }).then((res) => {
     alert(
-      "Registration Successfull. Please check email for confirmation email",
+      "Registration Successfull. Please check email for confirmation email"
     );
     window.location.href = "./login.html";
   });
@@ -41,7 +41,7 @@ const handleLogin = (event) => {
     username: formData.get("username"),
     password: formData.get("password"),
   };
-  fetch("http://127.0.0.1:8000/users/login/", {
+  fetch("https://flower-seal.vercel.app/users/login/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const handleLogout = () => {
     const token = localStorage.getItem("authToken");
     const user_id = localStorage.getItem("user_id");
 
-    fetch("http://127.0.0.1:8000/users/logout/", {
+    fetch("https://flower-seal.vercel.app/users/logout/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

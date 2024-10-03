@@ -30,19 +30,21 @@
       .asd {
         flex-direction: column;
       }
+
       /* .acd{
         width: 550px;
       } */
     }
   </style>
   <!-- Admin Dashboard -->
-  <h1 style="padding-top: 150px; text-align: center;">Add New Post</h1>
+  <h1 style="padding-top: 150px; text-align: center">Add New Post</h1>
   <!-- post form -->
   <div class="container asd w-100 d-flex align-items-center w-75 gap-5 pt-5">
     <div class="text-center">
-      <img class="img-fluid card index_flower_card" style="border-radius: 20px;" src="./images/add.svg" alt="Add Image">
+      <img class="img-fluid card index_flower_card" style="border-radius: 20px" src="./images/add.svg"
+        alt="Add Image" />
     </div>
-    <div class="card w-100 index_flower_card p-4" style="border-radius: 20px;">
+    <div class="card w-100 index_flower_card p-4" style="border-radius: 20px">
       <form id="create-post-form" class="row g-3" enctype="multipart/form-data" method="post">
         <label for="title"><b>Title</b></label>
         <input type="text" id="title" name="title" class="form-control" placeholder="Flower Name" required />
@@ -67,17 +69,17 @@
       </form>
     </div>
   </div>
-  <br>
+  <br />
 
   <!-- edit form -->
   <h1 class="pt-5 text-center">Edit Post</h1>
-  <br>
-  <br>
+  <br />
+  <br />
   <div class="container">
-    <div class="card w-100 mx-auto index_flower_card p-4" style="border-radius: 20px;">
-      <form id="edit-post-form" style="border-radius: 20px;">
+    <div class="card w-100 mx-auto index_flower_card p-4" style="border-radius: 20px">
+      <form id="edit-post-form" style="border-radius: 20px">
         <div class="row g-3">
-          <input type="hidden" id="edit-post-id">
+          <input type="hidden" id="edit-post-id" />
           <label for="edit-title"><b>Title</b></label>
           <input type="text" id="edit-title" name="edit-title" class="form-control" required />
 
@@ -96,7 +98,9 @@
           <label for="edit-stock"><b>Stock</b></label>
           <input type="number" id="edit-stock" name="edit-stock" class="form-control" required />
 
-          <button type="submit" class="btn btn-info w-100">Update Post</button>
+          <button type="submit" class="btn btn-info w-100">
+            Update Post
+          </button>
         </div>
       </form>
     </div>

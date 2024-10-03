@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   const flowerId = urlParams.get("id");
 
-  fetch(`http://127.0.0.1:8000/flowers/flowers/${flowerId}/`)
+  fetch(`https://flower-seal.vercel.app/flowers/flowers/${flowerId}/`)
     .then((response) => response.json())
     .then((data) => {
       displayFlowerDetails(data);
@@ -26,7 +26,7 @@ function order_flower(flower) {
     }
 
     if (product_quantity <= flower.stock) {
-      fetch("http://127.0.0.1:8000/orders/create_order/", {
+      fetch("https://flower-seal.vercel.app/orders/create_order/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -155,13 +155,16 @@ function displayFlowerDetails(flower) {
 const CheckOrder = async (flowerId) => {
   const token = localStorage.getItem("authToken");
   try {
-    const response = await fetch(`http://127.0.0.1:8000/flowers/check_order/?flowerId=${flowerId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `token ${token}`,
+    const response = await fetch(
+      `https://flower-seal.vercel.app/flowers/check_order/?flowerId=${flowerId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `token ${token}`,
+        },
       }
-    });
+    );
     if (!response.ok) {
       throw new Error("Failed to check order status");
     }
@@ -188,7 +191,7 @@ const post_comment = (flowerId) => {
     const username = document.getElementById("name").value;
     const usertext = document.getElementById("text").value;
 
-    fetch("http://127.0.0.1:8000/flowers/comments_api/", {
+    fetch("https://flower-seal.vercel.app/flowers/comments_api/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -214,7 +217,7 @@ const post_comment = (flowerId) => {
 };
 
 const get_comments = (flowerId) => {
-  fetch(`http://127.0.0.1:8000/flowers/get_comment/${flowerId}/`)
+  fetch(`https://flower-seal.vercel.app/flowers/get_comment/${flowerId}/`)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -230,7 +233,9 @@ const displayComment = (comments) => {
 
   commentCount.innerHTML = `${comments.length}`;
 
-  let commentsHtml = comments.map(comment => `
+  let commentsHtml = comments
+    .map(
+      (comment) => `
     <div class="col-md-4 col-lg-6 mb-4">
       <div class="card bg-white text-dark p-3 index_flower_card" style="border-radius: 10px;">
         <h5>${comment.name}</h5> 
@@ -247,94 +252,106 @@ const displayComment = (comments) => {
         </div>   
       </div>
     </div>
-  `).join("");
-  
+  `
+    )
+    .join("");
+
   commentdiv.innerHTML = `<div class="row">${commentsHtml}</div>`;
 };
-
-
 
 //comment edit
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("authToken");
-  document.getElementById("comments-list").addEventListener("click", (event) => {
-    if (event.target.classList.contains("edit-comment")) {
-      const commentId = event.target.getAttribute("data-id");
-      const commentName = event.target.getAttribute("data-name");
-      const commentBody = event.target.getAttribute("data-body");
+  document
+    .getElementById("comments-list")
+    .addEventListener("click", (event) => {
+      if (event.target.classList.contains("edit-comment")) {
+        const commentId = event.target.getAttribute("data-id");
+        const commentName = event.target.getAttribute("data-name");
+        const commentBody = event.target.getAttribute("data-body");
 
-      document.getElementById("edit-comment-id").value = commentId;
-      document.getElementById("edit-comment-name").value = commentName;
-      document.getElementById("edit-comment-body").value = commentBody;
-      document.getElementById("edit-comment-form").style.display = "block";
-    }
-  });
-
-  document.getElementById("edit-comment-form").addEventListener("submit", async (event) => {
-    event.preventDefault();
-    location.reload();
-    const commentId = document.getElementById("edit-comment-id").value;
-    const commentName = document.getElementById("edit-comment-name").value;
-    const commentBody = document.getElementById("edit-comment-body").value;
-
-    try {
-      const response = await fetch(`http://127.0.0.1:8000/flowers/comments/${commentId}/`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `token ${token}`,
-        },
-        body: JSON.stringify({ name: commentName, body: commentBody })
-      });
-
-      if (response.ok) {
-        document.getElementById("edit-comment-form").style.display = "none";
-        const updatedComments = get_comments();
-        displayComment(updatedComments);
-      } else {
-        const errorData = await response.json();
-        console.error("Failed to update comment: ", errorData);
-        alert(`Failed to update comment: ${errorData.detail || "Unknown error"}`);
+        document.getElementById("edit-comment-id").value = commentId;
+        document.getElementById("edit-comment-name").value = commentName;
+        document.getElementById("edit-comment-body").value = commentBody;
+        document.getElementById("edit-comment-form").style.display = "block";
       }
-    } catch (error) {
-      console.error("Error: ", error);
-      alert("Comment Edit Successfully!");
-    }
-  });
-});
+    });
 
+  document
+    .getElementById("edit-comment-form")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
+      location.reload();
+      const commentId = document.getElementById("edit-comment-id").value;
+      const commentName = document.getElementById("edit-comment-name").value;
+      const commentBody = document.getElementById("edit-comment-body").value;
+
+      try {
+        const response = await fetch(
+          `https://flower-seal.vercel.app/flowers/comments/${commentId}/`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `token ${token}`,
+            },
+            body: JSON.stringify({ name: commentName, body: commentBody }),
+          }
+        );
+
+        if (response.ok) {
+          document.getElementById("edit-comment-form").style.display = "none";
+          const updatedComments = get_comments();
+          displayComment(updatedComments);
+        } else {
+          const errorData = await response.json();
+          console.error("Failed to update comment: ", errorData);
+          alert(
+            `Failed to update comment: ${errorData.detail || "Unknown error"}`
+          );
+        }
+      } catch (error) {
+        console.error("Error: ", error);
+        alert("Comment Edit Successfully!");
+      }
+    });
+});
 
 //delete comment
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("authToken");
-  document.getElementById("comments-list").addEventListener("click", async (event) => {
-    if (event.target.classList.contains("delete-comment")) {
-      const commentId = event.target.getAttribute("data-id");
-      try {
-        if (confirm("Are you sure you want to delete this comment?")) {
+  document
+    .getElementById("comments-list")
+    .addEventListener("click", async (event) => {
+      if (event.target.classList.contains("delete-comment")) {
+        const commentId = event.target.getAttribute("data-id");
+        try {
+          if (confirm("Are you sure you want to delete this comment?")) {
+            const response = await fetch(
+              `https://flower-seal.vercel.app/flowers/comments/${commentId}/`,
+              {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `token ${token}`,
+                },
+              }
+            );
 
-          const response = await fetch(`http://127.0.0.1:8000/flowers/comments/${commentId}/`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `token ${token}`,
+            if (response.ok) {
+              const commentElement = event.target.closest(".card");
+              commentElement.remove();
+              const updatedComments = get_comments();
+              displayComment(updatedComments);
+            } else {
+              alert("Failed to delete comment");
             }
-          });
-
-          if (response.ok) {
-            const commentElement = event.target.closest(".card");
-            commentElement.remove();
-            const updatedComments = get_comments();
-            displayComment(updatedComments);
-          } else {
-            alert("Failed to delete comment");
           }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Comment Delete Successfully!");
+          location.reload();
         }
-      } catch (error) {
-        console.error("Error:", error);
-        alert("Comment Delete Successfully!");
-        location.reload();
       }
-    }
-  });
-}); 
+    });
+});

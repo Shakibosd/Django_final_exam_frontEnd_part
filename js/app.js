@@ -1,28 +1,35 @@
 // flowers api fetch
 const loadFlowers = () => {
-  fetch("http://127.0.0.1:8000/flowers/flowers/")
+  fetch("https://flower-seal.vercel.app/flowers/flowers/")
     .then((response) => response.json())
     .then((data) => displayFlowers(data))
     .catch((error) => console.log(error));
 };
 
 // flowers dynamic
-const displayFlowers = (flowers) => { 
+const displayFlowers = (flowers) => {
   flowers.forEach((flower) => {
     const parent = document.getElementById("flower-container");
     const card = document.createElement("div");
     card.classList.add("col-sm-12", "col-md-6", "col-lg-4", "mb-5");
     card.innerHTML = `
          <div class="card bg-white text-dark pt-3 index_flower_card" style="border-radius: 15px;">
-          <img src="${flower.image}" class="img-fluid mx-auto d-block" alt="${flower.title}" style="width:80%; height:210px; border-radius:10px;">
+          <img src="${flower.image}" class="img-fluid mx-auto d-block" alt="${
+      flower.title
+    }" style="width:80%; height:210px; border-radius:10px;">
           <div class="card-body" style="height:230px;">
               <h6 class="card-title">Title: ${flower.title}</h6>
               <br>
               <p>Price: ${flower.price} ৳</p>
-              <small>Category : </small> <small class="btn btn-secondary btn-sm">${flower.category}</small>
+              <small>Category : </small> <small class="btn btn-secondary btn-sm">${
+                flower.category
+              }</small>
               <br>
               <br>
-              <p class="card-text">Description: ${flower.description.slice(0, 20)}...</p>
+              <p class="card-text">Description: ${flower.description.slice(
+                0,
+                20
+              )}...</p>
           </div>
         </div>
       `;

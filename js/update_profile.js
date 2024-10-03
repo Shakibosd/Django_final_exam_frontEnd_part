@@ -1,7 +1,7 @@
 //user profile and profile update
 document.addEventListener("DOMContentLoaded", () => {
   const user_id = localStorage.getItem("user_id");
-  const apiUrl = `http://127.0.0.1:8000/profiles/user/${user_id}/`;
+  const apiUrl = `https://flower-seal.vercel.app/profiles/user/${user_id}/`;
   const token = localStorage.getItem("token");
 
   fetch(apiUrl, {
@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("http://127.0.0.1:8000/orders/my_orders/", {
+  fetch("https://flower-seal.vercel.app/orders/my_orders/", {
     headers: {
       "Content-Type": "application/json",
       Authorization: `token ${token}`,
-    }
+    },
   })
     .then((response) => {
       if (!response.ok) {

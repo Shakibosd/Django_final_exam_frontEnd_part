@@ -262,8 +262,7 @@ const displayComment = (comments) => {
 //comment edit
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("authToken");
-  document
-    .getElementById("comments-list")
+  document.getElementById("comments-list")
     .addEventListener("click", (event) => {
       if (event.target.classList.contains("edit-comment")) {
         const commentId = event.target.getAttribute("data-id");
@@ -277,8 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-  document
-    .getElementById("edit-comment-form")
+  document.getElementById("edit-comment-form")
     .addEventListener("submit", async (event) => {
       event.preventDefault();
       location.reload();

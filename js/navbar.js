@@ -3,7 +3,6 @@ fetch("navbar.html")
   .then((data) => {
     document.getElementById("navbar").innerHTML = data;
 
-    // Assign Auth Element
     const navElement = document.getElementById("nav-element");
     const token = localStorage.getItem("authToken");
 

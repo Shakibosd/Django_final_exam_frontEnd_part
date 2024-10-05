@@ -4,25 +4,24 @@ body {
     transition: background-color 0.3s, color 0.3s !important;
 }
 
-/* Dark Mode Styling */
 .dark-mode {
     background-color: #222 !important;
     color: #fff !important;
 }
 
-/* Navbar Dark Mode */
+
 .dark-mode .navbar {
     background-color: #333 !important;
     color: #fff !important;
 }
 
-/* Footer Dark Mode */
+
 .dark-mode .footer {
     background-color: #333 !important;
     color: #fff !important;
 }
 
-/* Cards Dark Mode */
+
 .dark-mode .card,
 .dark-mode .flower-card {
     background-color: #444 !important;
@@ -30,7 +29,7 @@ body {
     border: 1px solid #555 !important;
 }
 
-/* input file */
+
 .dark-mode input[type="text"],
 .dark-mode input[type="password"],
 .dark-mode input[type="email"],
@@ -42,7 +41,7 @@ body {
     border: 1px solid #666 !important;
 }
 
-/* input file */
+
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -61,7 +60,7 @@ textarea {
     right: 10px;
 }
 
-/* modal */
+
 .dark-mode .file-upload-label {
     background-color: #333 !important;
     color: #fff !important;

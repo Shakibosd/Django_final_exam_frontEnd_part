@@ -114,7 +114,8 @@
                     alert("Your message has been sent successfully.");
                     location.reload();
                     document.querySelector("form").reset();
-                } else {
+                } 
+                else {
                     const errorData = await response.json();
                     alert("Failed to send your message: " + JSON.stringify(errorData));
                 }

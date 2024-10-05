@@ -1,9 +1,8 @@
-//register part
+// Register part
 const handleRegister = (event) => {
   event.preventDefault();
   const form = document.getElementById("register-form");
   const formData = new FormData(form);
-  //   console.log(formData);
 
   const registerData = {
     username: formData.get("username"),
@@ -14,7 +13,7 @@ const handleRegister = (event) => {
     confirm_password: formData.get("confirm_password"),
   };
 
-  console.log("registration data", registerData);
+  console.log("Registration data", registerData);
 
   fetch("https://flower-seal.vercel.app/users/register/", {
     method: "POST",
@@ -22,16 +21,17 @@ const handleRegister = (event) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(registerData),
-  }).then((res) => {
-    alert(
-      "Registration Successfull. Please check email for confirmation email"
-    );
-    window.location.href = "./login.html";
-  });
-  // .then((data) => console.log(data));
+  })
+    .then((res) => {
+      alert(
+        "Registration Successful. Please check your email for a confirmation."
+      );
+      window.location.href = "./login.html";
+    })
+    .catch((error) => console.log("Registration Error", error));
 };
 
-//login part
+// Login part
 const handleLogin = (event) => {
   event.preventDefault();
   const form = document.getElementById("login-form");
@@ -41,6 +41,7 @@ const handleLogin = (event) => {
     username: formData.get("username"),
     password: formData.get("password"),
   };
+
   fetch("https://flower-seal.vercel.app/users/login/", {
     method: "POST",
     headers: {
@@ -59,7 +60,7 @@ const handleLogin = (event) => {
       console.log("Auth token received:", data.token);
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user_id", data.user_id);
-      alert("Logdin Successfull!");
+      alert("Login Successful!");
       window.location.href = "./update_profile.html";
     })
     .catch((err) => {
@@ -68,7 +69,7 @@ const handleLogin = (event) => {
     });
 };
 
-//logout part
+// Logout part
 const handleLogout = () => {
   if (confirm("Are you sure you want to logout?")) {
     const token = localStorage.getItem("authToken");

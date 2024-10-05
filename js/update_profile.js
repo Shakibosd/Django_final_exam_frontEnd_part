@@ -1,4 +1,4 @@
-//user profile and profile update
+//flower buy now order history
 document.addEventListener("DOMContentLoaded", () => {
   const user_id = localStorage.getItem("user_id");
   const apiUrl = `https://flower-seal.vercel.app/profiles/user/${user_id}/`;
@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((error) => console.error("Error fetching profile data:", error));
 
   const profileForm = document.getElementById("profile-form");
+  
+
   profileForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// order history
+//user profile data
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("authToken");
 
@@ -72,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       console.log("Fetched data:", data);
       const orderHistoryTable = document.getElementById("order-history");
-      orderHistoryTable.innerHTML = "";
+      orderHistoryTable.innerHTML = ""; 
       data.forEach((order) => {
         const row = document.createElement("tr");
         row.innerHTML = `

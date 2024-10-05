@@ -1,4 +1,4 @@
-//dark
+//website dark mode er code
 document.addEventListener("DOMContentLoaded", function () {
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   const body = document.body;

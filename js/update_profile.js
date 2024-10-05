@@ -1,4 +1,4 @@
-//flower buy now order history
+//user er data
 document.addEventListener("DOMContentLoaded", () => {
   const user_id = localStorage.getItem("user_id");
   const apiUrl = `https://flower-seal.vercel.app/profiles/user/${user_id}/`;
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-//user profile data
+//order history
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("authToken");
 

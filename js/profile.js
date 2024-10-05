@@ -53,5 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const flowerCountElement = document.getElementById("flower-count");
     flowerCountElement.innerText = `Total Flowers: ${flowers.length} !`;
+    flowerCountElement.style.color = "unset"
   }
 });

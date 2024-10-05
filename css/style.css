@@ -21,6 +21,7 @@ nav {
 .logo-img {
   width: 90px;
   height: 90px;
+  /* color: unset; */
   border-radius: 45px;
 }
 

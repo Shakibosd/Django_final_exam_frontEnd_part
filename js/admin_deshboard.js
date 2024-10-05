@@ -8,7 +8,7 @@ function fetchPosts() {
       data.forEach((post) => {
         console.log(post.id);
         let postCard = `
-          <div class="post-card card w-100 index_flower_card" style="border-radius: 20px;" id="post-${post.id}">
+          <div class="post-card card w-100 mx-auto index_flower_card" style="border-radius: 20px;" id="post-${post.id}">
             <br/>
             <img class="w-50 d-block mx-auto" style="height: 300px; border-radius:10px;" src="${post.image}" alt="${post.title}">
             <br/>

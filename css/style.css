@@ -55,23 +55,36 @@ nav {
   position: relative;
 }
 
-@media (min-width: 1024px) {
+/* desktop */
+@media (min-width: 1012px) {
   .flower {
-    padding-top: 650px;
+    padding-top: 600px;
   }
 }
 
+/* mobile */
 @media (max-width: 767px) {
   .flower {
-    padding-top: 240px;
+    padding-top: 310px;
   }
 }
+
+/* tablet */
+@media (min-width: 768px) and (max-width: 1011px) {
+  .flower {
+    padding-top: 500px;
+  }
+}
+
+
+
 
 @media (min-width: 1024px) {
   .flower_left {
-    padding-left: 205px;
+    padding-left: 240px;
   }
 }
+
 
 @media (max-width: 767px) {
   .flower_left {
